@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/csc369-2015-01/g4paprak/!svn/ver/4/a1/traces
+END
+1-simple-malloc
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/csc369-2015-01/g4paprak/!svn/ver/3/a1/traces/1-simple-malloc
+END
+6-coalesce
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/csc369-2015-01/g4paprak/!svn/ver/3/a1/traces/6-coalesce
+END
+genrandom.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/csc369-2015-01/g4paprak/!svn/ver/3/a1/traces/genrandom.py
+END
+large_malloc
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/csc369-2015-01/g4paprak/!svn/ver/22/a1/traces/large_malloc
+END
+2-extended-malloc
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/csc369-2015-01/g4paprak/!svn/ver/10/a1/traces/2-extended-malloc
+END
+4-reuse
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/csc369-2015-01/g4paprak/!svn/ver/3/a1/traces/4-reuse
+END
+7-longrandom
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/csc369-2015-01/g4paprak/!svn/ver/3/a1/traces/7-longrandom
+END
+3-simple-free
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/csc369-2015-01/g4paprak/!svn/ver/3/a1/traces/3-simple-free
+END
+5-parallel-allocs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/csc369-2015-01/g4paprak/!svn/ver/3/a1/traces/5-parallel-allocs
+END
