@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/csc369-2015-01/g4paprak/!svn/ver/27/a2
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/csc369-2015-01/g4paprak/!svn/ver/27/a2/Makefile
+END
+sim.h
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/csc369-2015-01/g4paprak/!svn/ver/27/a2/sim.h
+END
+lru.c
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/csc369-2015-01/g4paprak/!svn/ver/42/a2/lru.c
+END
+opt.c
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/csc369-2015-01/g4paprak/!svn/ver/46/a2/opt.c
+END
+fifo.c
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/csc369-2015-01/g4paprak/!svn/ver/42/a2/fifo.c
+END
+pagetable.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/csc369-2015-01/g4paprak/!svn/ver/48/a2/pagetable.c
+END
+rand.c
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/csc369-2015-01/g4paprak/!svn/ver/27/a2/rand.c
+END
+README.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/csc369-2015-01/g4paprak/!svn/ver/47/a2/README.pdf
+END
+sim.c
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/csc369-2015-01/g4paprak/!svn/ver/41/a2/sim.c
+END
+pagetable.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/csc369-2015-01/g4paprak/!svn/ver/41/a2/pagetable.h
+END
+swap.c
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/csc369-2015-01/g4paprak/!svn/ver/27/a2/swap.c
+END
+clock.c
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/csc369-2015-01/g4paprak/!svn/ver/43/a2/clock.c
+END
