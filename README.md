@@ -36,28 +36,37 @@ Simulation of translating virtual memory addresses to physical in a computer, an
 
 #####Options for tracefile:
 -traceprogs/tr-simpleloop.ref (trace of a program that loops and allocates memory on the stack & heap, then frees it)
+
 -traceprogs/tr-matmul.ref (trace of a standard matrix multiplication program)
+
 -traceprogs/tr-blocked.ref (trace of blocked matrix multiplication program)
+
 -traceprogs/tr-do_fstree.ref (This one is pretty cool, it traces the do_fstree program from the garbage collector below in a loop 50 times)
 
 #####Options for -m:
 -make this the same size as -s for no swapping (everything just stored in RAM), or less to force swapping
+
 -for the programs above try: 50, 100, 150, 200
 
 #####Options for -s:
 -make this at least as big as the number of unique virtual addresses in the tracefile
+
 -for the programs above, 3000 will do for all
 
 #####Options for -a:
 This is the algorithm we use to decide which address to swap out when swapping must occur.
+
 -fifo (this is a standard first in, first out algorithm)
+
 -lru (this is the "least recently used" algorithm, which generally has the best hit rate in a real-world case)
+
 -clock (this is an approximated "least recently used" algorithm, more efficient than lru but lower hit rate
+
 -opt (this is the optimal algorithm, where the item in RAM which will be used furthest into the future is chosen as the victim. This requires knowledge of the future which is only possible in this case because we have tracefiles!)
 
 ie. you can run as follows: ./sim -f tr-matmul.ref -m 50 -s 3000 -a opt
 
--The README.pdf contains an analysis of the different swapping algorithms on different programs.
+The README.pdf contains an analysis of the different swapping algorithms on different programs.
 
 ##CSC209
 Projects for CSC209H: Software Tools and Systems Programming (in C)
