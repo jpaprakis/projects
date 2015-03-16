@@ -14,12 +14,18 @@ Instructions to run:
 Where -d (debug, prints out malloced chunks) and -t (touch) are optional 
   
 Options for (filename):
-traces/1-simple-malloc
-traces/2-extended-malloc
-traces/3-simple-free
-traces/4-reuse
-traces/5-coalesce
-traces/longsingle
+
+-traces/1-simple-malloc
+
+-traces/2-extended-malloc
+
+-traces/3-simple-free
+
+-traces/4-reuse
+
+-traces/5-coalesce
+
+-traces/longsingle
     
 ###a2: 
 
@@ -37,8 +43,8 @@ Instructions to run:
   -do_fstree (this will create a tree based on the specifications in fs_trans2, and garbage collect nodes that were         removed at runtime)
 
   To make a linkedlist:
-    do_trans <filename>  (this will create a linkedlist based on the specifications in <filename>)
-    -<filename> can either be transactions1 or short_trans
+    do_trans (filename)  (this will create a linkedlist based on the specifications in (filename))
+    -(filename) can either be transactions1 or short_trans
     -May send a SIGUSR1 signal to the program to garbage collect at any time while the program is running (generally only      transactions1 will run long enough to do this)
 
 ###a4: Calserver
