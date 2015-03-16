@@ -1,6 +1,28 @@
 # projects
 For more information about a project please see the brief description below.
 
+##CSC369
+Projects for CSC369: Principles of operating systems (in C)
+
+###a1: Malloc
+Manually created malloc and free using sbrk, and saving free chunks of memory in a linkedlist. 
+
+Instructions to run:
+1. make
+2. test_malloc -f <filename> -d -t
+
+  Where -d (debug, prints out malloced chunks) and -t (touch) are optional 
+  
+  Options for <filename>:
+    traces/1-simple-malloc
+    traces/2-extended-malloc
+    traces/3-simple-free
+    traces/4-reuse
+    traces/5-coalesce
+    traces/longsingle
+    
+###a2: 
+
 ##CSC209
 Projects for CSC209H: Software Tools and Systems Programming (in C)
 
