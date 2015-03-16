@@ -37,7 +37,9 @@ A mark-and-sweep garbage collector that works on
 
 Instructions to run:
 1. make
+
 2. choose between two programs:
+
   
   To make a tree:
   -do_fstree (this will create a tree based on the specifications in fs_trans2, and garbage collect nodes that were         removed at runtime)
