@@ -9,17 +9,17 @@ Manually created malloc and free using sbrk, and saving free chunks of memory in
 
 Instructions to run:
 1. make
-2. test_malloc -f <filename> -d -t
+2. test_malloc -f (filename) -d -t
 
-  Where -d (debug, prints out malloced chunks) and -t (touch) are optional 
+Where -d (debug, prints out malloced chunks) and -t (touch) are optional 
   
-  Options for <filename>:
-    traces/1-simple-malloc
-    traces/2-extended-malloc
-    traces/3-simple-free
-    traces/4-reuse
-    traces/5-coalesce
-    traces/longsingle
+Options for (filename):
+traces/1-simple-malloc
+traces/2-extended-malloc
+traces/3-simple-free
+traces/4-reuse
+traces/5-coalesce
+traces/longsingle
     
 ###a2: 
 
