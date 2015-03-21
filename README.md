@@ -113,7 +113,7 @@ Possible Commands:
 
 -mkdir (dir name)
 
--ls
+-ls (-r) (dir name)  **-r and dir name are both optional: -r will recursively tell you what is in each sub directory, if dir name is not specified will just start from current directory
 
 -cd (dir)
 
@@ -122,3 +122,5 @@ Possible Commands:
 -echo (text) >> (filename) **this will append what is in the current file at filename (if exists) with text
 
 -cat (filename)
+
+-exit
