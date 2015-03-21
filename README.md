@@ -103,15 +103,22 @@ Projects for CSC207H: Software Design (in Java)
 
 ###Assignment 3: Google Scholar Regex Scraper
 Regex scraper that scrapes HTML data from Google Scholar author pages, formats & prints it to the screen.
-*Note: Only works with Google Scholar Author pages from the summer, not the newest format. An old sample page "output1.html" has been hard-coded into the code for running purposes.
+
+*Note: Only works with Google Scholar Author pages from the summer, not the newest format. An old sample page "output1.html" has been hard-coded into the input for demonstration purposes.
 
 ###Assignment 2: Command Line File System
 Replica of a standard Unix command line file system with basic command functionality. 
 
 Possible Commands:
+
 -mkdir (dir name)
+
 -ls
+
 -cd (dir)
+
 -echo (text) > (filename)  **this will overwrite what is in the current file at filename (if exists) with text
+
 -echo (text) >> (filename) **this will append what is in the current file at filename (if exists) with text
+
 -cat (filename)
