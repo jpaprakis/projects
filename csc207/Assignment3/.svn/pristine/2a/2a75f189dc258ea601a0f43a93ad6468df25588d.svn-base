@@ -1,0 +1,68 @@
+package driver;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+
+public class Author {
+	
+	private StringBuilder name;
+	private StringBuilder numCitations;
+	private StringBuilder numi10Citations;
+	private List<String> pubs;
+	private int numPaperCitations;
+	private int numCoAuthors;
+	private List<String> coAuthors;
+
+	private final String regExName = "<span id=\"cit-name-display\" "
+            + "class=\"cit-in-place-nohover\">(.*?)</span>";
+	private final String regExNumCitations = ">Citations</a></td><td class=\""
+			+ "cit-borderleft cit-data\">(\\d+)</td>";
+	
+	private final String regExNumi10Citations = "<td class=\"cit-borderleft "
+			+ "cit-data\">(\\d+)</td></tr></tbody></table>";
+	
+	private final String regExPubs = "class=\"cit-dark-large-link\">(.*?)</a>"
+			+ "<br>";
+	
+	private final String regExPaperCitations = ">(\\d+)</a></td><td id=\"col-"
+			+ "asterisk\"></td><td id=\"col-year\">";
+	
+	private final String regExNameCoAuthor = "\" title=\"(.*?)\">(.*?)</a><br><(a|d)";
+	
+	//Constructor sets all attributes of Author by calling extractor
+	public Author(String googleScholarURL) {
+		Extractor authorExtractor = new Extractor(googleScholarURL);
+		this.name = authorExtractor.simpleExtract(regExName);
+		System.out.println("DEBUG: Author name is " + this.name);
+		this.numCitations = authorExtractor.simpleExtract(regExNumCitations);
+		System.out.println("DEBUG: num citations is " + this.numCitations);
+		this.numi10Citations = authorExtractor.simpleExtract(regExNumi10Citations);
+		System.out.println("DEBUG: num i10 citations is " + this.numi10Citations);
+		this.pubs = authorExtractor.listExtract(regExPubs, 3, 1);
+		System.out.println("DEBUG: regex pubs are " + this.pubs);	
+		this.numPaperCitations = countCitations(authorExtractor.listExtract(regExPaperCitations, 5, 1));
+		System.out.println("DEBUG: num papers are " + this.numPaperCitations);		
+		this.coAuthors = authorExtractor.listExtract(regExNameCoAuthor, -1, 2);
+		System.out.println("DEBUG: CoAuthors are " + this.coAuthors);		
+		this.numCoAuthors = this.coAuthors.size();
+		System.out.println("DEBUG: Num CoAuthors are " + this.numCoAuthors);	
+	}
+	
+	public StringBuilder getName() {
+		return this.name;
+	}
+	
+	
+	public static int countCitations(List<String> citationSet) {
+		Iterator<String> iterator = citationSet.iterator();
+		int sumOfCitations = 0;
+		while (iterator.hasNext()) {
+			int toInt = Integer.parseInt((String)(iterator.next()));
+			sumOfCitations += toInt;
+		}
+		return sumOfCitations;
+	}
+}
+
+

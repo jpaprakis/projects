@@ -1,0 +1,10 @@
+a) What did I work on last time? 
+	-Work on method to copy files from one file to another.
+
+b) What do I plan to work on now?  
+	-Finish the Copy method
+
+c) Am I blocked on anything?  
+	-I'm having trouble using my partners methods for copying directories. I'm
+	not exactly sure how to implement them properly. I'm thinking that cp
+	can be done inside itself. 

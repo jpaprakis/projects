@@ -1,0 +1,50 @@
+//Sprint 2 Backlog.
+
+June 22 to June 25
+
+
+
+Product Backlog items to be implemented:
+
+a) Program methods to move and copy files
+
+b) Program methods to combine methods to produce the output for specified commands
+
+
+Specific tasks to be accomplished:
+
+
+a-1. (FileMovement) Create a method that calls all methods required to move files to a new specified location 
+(through creating a new file at that location, scanning contents of old file, writing contents to the new file, 
+then deleting the old file) (mv OLDPATH NEWPATH)
+
+a-2. (FileMovement) Create a method that calls all methods required to copy files to a specified location 
+(through creating a new file at that location, scanning contents of old file, writing contents to the new file)
+(cp OLDPATH NEWPATH)
+
+b-1. (AllCommands) Create methods that call all the methods required for the following commands:
+exit
+cat
+echo [> outfile]
+echo >> outfile
+ls [PATH...]
+
+b-2. (AllCommands) Create methods that call all the methods required for the following commands:
+mkdir DIR ...
+cd DIR
+pwd
+ls [PATH...]
+
+These tasks are assigned as follows:
+
+User: Daniil Kouzentsov
+Tasks: b-1
+
+User: Julianna Paprakis
+Tasks: b-2
+
+User: Lindsay Chown
+Tasks: a-1
+
+User: Jacob Tsafatinos
+Tasks: a-2

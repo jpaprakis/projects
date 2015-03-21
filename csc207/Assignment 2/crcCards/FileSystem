@@ -1,0 +1,11 @@
+Class name: FileCommands
+
+Subclasses: Directory and File  
+
+Responsibilities:
+*Creates a FileSystem with name and Children
+*add files to parent Directory 
+*Deletes file System 
+
+Collaborators:
+File and Directory 

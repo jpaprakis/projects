@@ -1,0 +1,11 @@
+a) What did I work on last time? 
+	- designed a new framework for the project.
+	- wrote pwd command
+
+b) What do I plan to work on now?  
+	- redo the mkdir command and the cd command and any other commands i have
+	time to do.
+	- make test cases for them
+
+c) Am I blocked on anything?  
+    - Nothing really

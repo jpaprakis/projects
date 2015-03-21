@@ -1,0 +1,10 @@
+What did I do last time?
+	- All commands implemented
+
+What do I plan to do now?
+	- Fix test cases and create complex test cases to test against
+	- Sort through code for style changes and necessary fixes
+	- Help team finish mv and cp commands
+
+Am I blocked on anything?
+	- Not really, need to just work hard on making test cases

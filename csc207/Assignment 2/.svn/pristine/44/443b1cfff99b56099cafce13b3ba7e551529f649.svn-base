@@ -1,0 +1,307 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.*;
+
+import driver.*;
+
+public class TestingInput {
+
+	Directory A;
+	Directory B;
+	Directory C;
+	Directory A1;
+	Directory B1;
+	Directory C1;
+	Directory B11;
+	Directory C11;
+	File AFile;
+	File B1_1File;
+	File B1_2File;
+	File C1_1File;
+	File B11_1File;
+
+	@Before
+	public void setUp() {
+		Directory.root = new Directory();
+		A = new Directory("A", Directory.root);
+		B = new Directory("B", Directory.root);
+		C = new Directory("C", Directory.root);
+		A1 = new Directory("A1", A);
+		B1 = new Directory("B1", B);
+		C1 = new Directory("C1", C);
+		B11 = new Directory("B11", B1);
+		C11 = new Directory("C11", C1);
+		AFile = new File("AFile", A);
+		B1_1File = new File("B1_1File", B1);
+		B1_2File = new File("B1_2File", B1);
+		C1_1File = new File("C1_1File", C1);
+		B11_1File = new File("B11_1File", B11);
+		Directory.root.setWorkingDirectory();
+		B1_1File.alterContents("B1_1 test contents", true);
+		AFile.alterContents("A test contents", true);
+	}
+
+	@Test
+	public void testSplitLastPath() {
+		assertEquals(Input.splitLastPath("/B/B1/B11/B11_1File"), "B11_1File");
+	}
+
+	@Test
+	public void testParsePath() {
+		FileSystem[] parsedPath = Input.parsePath("/B/B1/B11/B11_1File");
+		assertEquals(parsedPath[0], B11);
+		assertEquals(parsedPath[1], B11_1File);
+		// If the last part of the path doesn't exist, second element is null
+		FileSystem[] secondParsedPath = Input.parsePath("/B/B1/B11/B13_1File");
+		assertEquals(secondParsedPath[0], B11);
+		assertEquals(secondParsedPath[1], null);
+	}
+
+	@Test
+	public void testEnteredCommand_pwd() {
+		Input.enteredCommand("pwd");
+		assertEquals(Input.getInBounds(), 1);
+		assertEquals(Input.getCommandParts().get(0), "pwd");
+	}
+
+	@Test
+	public void testEnteredCommand_ls() {
+		Input.enteredCommand("ls");
+		assertEquals(Input.getInBounds(), 1);
+		assertEquals(Input.getCommandParts().get(0), "ls");
+
+		Input.enteredCommand("ls /B/B1 A C/C1");
+		assertEquals(Input.getInBounds(), 4);
+		assertEquals(Input.getCommandParts().get(0), "ls");
+		assertEquals(Input.getCommandParts().get(1), "/B/B1");
+		assertEquals(Input.getCommandParts().get(2), "A");
+		assertEquals(Input.getCommandParts().get(3), "C/C1");
+	}
+
+	@Test
+	public void testEnteredCommand_cat() {
+		// testing cat for a file from a path
+		Input.enteredCommand("cat /B/B1/B1_1File");
+		assertEquals(Input.getCommandParts().get(0), "cat");
+		assertEquals(Input.getCommandParts().get(1), "/B/B1/B1_1File");
+		// testing cat for a file from the working directory
+		A.setWorkingDirectory();
+		Input.enteredCommand("cat AFile");
+	}
+	
+	@Test
+	public void testEnteredCommand_pushd() {
+		// testing pushd with a single directory given
+		Input.enteredCommand("pushd A");
+		assertEquals(Directory.workingDirectory, A);
+		assertEquals(StackCommands.getTopOfStack(), Directory.root);
+		// testing pushd with a directory form a path
+		Input.enteredCommand("pushd /B/B1/B11");
+		assertEquals(Directory.workingDirectory, B11);
+		assertEquals(StackCommands.getTopOfStack(), A);
+		// testing pushd to see if the full path is put on the stack
+		Input.enteredCommand("pushd /C");
+		assertEquals(Directory.workingDirectory, C);
+		assertEquals(StackCommands.getTopOfStack(), B11);
+	}
+	
+	@Test
+	public void testEnteredCommand_popd() {
+		// testing popd with a directory
+		Directory.root.setWorkingDirectory();
+		StackCommands.Pushd(A);
+		StackCommands.Pushd(B);
+		Input.enteredCommand("popd");
+		assertEquals(Directory.workingDirectory, A);
+		assertEquals(StackCommands.getTopOfStack(), Directory.root);
+	}
+
+	@Test
+	public void testEnteredCommand_cd() {
+		// testing cd for a directory from a path
+		assertEquals(Directory.workingDirectory, Directory.root);
+		Input.enteredCommand("cd /B/B1/B11");
+		assertEquals(Input.getCommandParts().get(0), "cd");
+		assertEquals(Input.getCommandParts().get(1), "/B/B1/B11");
+		assertEquals(Directory.workingDirectory, B11);
+		// testing cd going back from the working directory
+		Input.enteredCommand("cd ..");
+		assertEquals(Directory.workingDirectory, B1);
+		// testing cd going forward from the working directory
+		Input.enteredCommand("cd B11");
+		assertEquals(Directory.workingDirectory, B11);
+		// testing cd going back to the root
+		Input.enteredCommand("cd /");
+		assertEquals(Directory.workingDirectory, Directory.root);
+		// testing cd going from the current dir
+		Input.enteredCommand("cd ./A");
+		assertEquals(Directory.workingDirectory, A);
+		// testing cd switching from the current parent dir
+		Input.enteredCommand("cd ../B");
+		assertEquals(Directory.workingDirectory, B);
+	}
+
+	@Test
+	public void testEnteredCommand_mkdir() {
+		// testing mkdir from all forms of input (path, from parent, from
+		// current dir w/o "." and from current dir w/ ".")
+		B1.setWorkingDirectory();
+		Input.enteredCommand("mkdir /C/C1/C11/C111 ../B2 B12 ./B13");
+		assertEquals(Input.getCommandParts().get(0), "mkdir");
+		assertEquals(Input.getCommandParts().get(1), "/C/C1/C11/C111");
+		assertEquals(Input.getCommandParts().get(2), "../B2");
+		assertEquals(Input.getCommandParts().get(3), "B12");
+		assertEquals(Input.getCommandParts().get(4), "./B13");
+		assertTrue(C11.fileSystemInDirectory("C111"));
+		assertTrue(B.fileSystemInDirectory("B2"));
+		assertTrue(B1.fileSystemInDirectory("B12"));
+		assertTrue(B1.fileSystemInDirectory("B13"));
+	}
+
+	@Test
+	public void testEnteredCommand_mvF2F() {
+		// testing same cases of mv as in TestingFileMovement: File to File
+		B1.setWorkingDirectory();
+		Input.enteredCommand("mv /A/AFile B1_2File");
+		assertEquals(Input.getCommandParts().get(0), "mv");
+		assertEquals(Input.getCommandParts().get(1), "/A/AFile");
+		assertEquals(Input.getCommandParts().get(2), "B1_2File");
+		assertFalse(A.getFiles().contains(AFile));
+		assertTrue(B1.getFiles().contains(AFile));
+		assertFalse(B1.getFiles().contains(B1_2File));
+		assertEquals(AFile.getContents(), "A test contents");
+		// check to ensure B1 still contains old files and directories
+		assertTrue(B1.getFiles().contains(B1_1File));
+		assertTrue(B1.getChildren().contains(B11));
+	}
+
+	@Test
+	public void testEnteredCommand_mvF2D() {
+		// testing same cases of mv as in TestingFileMovement: File to Directory
+		C.setWorkingDirectory();
+		Input.enteredCommand("mv /A/AFile C1");
+		assertEquals(Input.getCommandParts().get(0), "mv");
+		assertEquals(Input.getCommandParts().get(1), "/A/AFile");
+		assertEquals(Input.getCommandParts().get(2), "C1");
+		assertFalse(A.getFiles().contains(AFile));
+		assertTrue(C1.getFiles().contains(AFile));
+		assertEquals(AFile.getContents(), "A test contents");
+		// check to ensure C1 still contains old files and directories
+		assertTrue(C1.getFiles().contains(C1_1File));
+		assertTrue(C1.getChildren().contains(C11));
+	}
+
+	@Test
+	public void testEnteredCommand_mvD2D() {
+		// testing same cases of mv as in TestingFileMovement: Directory to
+		// Directory
+		C.setWorkingDirectory();
+		Input.enteredCommand("mv /A C1");
+		assertEquals(Input.getCommandParts().get(1), "/A");
+		assertEquals(Input.getCommandParts().get(2), "C1");
+		assertFalse(Directory.root.getChildren().contains(A));
+		assertTrue(C1.getChildren().contains(A));
+		// check to make sure A still contains its files and children
+		assertTrue(A.getChildren().contains(A1));
+		assertTrue(A.getFiles().contains(AFile));
+	}
+
+	@Test
+	public void testEnteredCommand_cpF2F() {
+		// testing same cases of cp as in TestingFileMovement: File to File
+		B1.setWorkingDirectory();
+		Input.enteredCommand("cp /A/AFile B1_2File");
+		assertEquals(Input.getCommandParts().get(1), "/A/AFile");
+		assertEquals(Input.getCommandParts().get(2), "B1_2File");
+		File oldFile = (File) A.fileSystemNameToObject("AFile");
+		File newFile = (File) B1.fileSystemNameToObject("AFile");
+		// make sure AFile still exists in dir A
+		assertTrue(A.getFiles().contains(oldFile));
+		// check that file was copied
+		assertTrue(B1.getFiles().contains(newFile));
+		// check that old file was replaced
+		assertFalse(B1.getFiles().contains(B1_2File));
+		assertEquals(oldFile.getContents(), "A test contents");
+		assertEquals(newFile.getContents(), "A test contents");
+		// check to ensure B1 still contains old files and directories
+		assertTrue(B1.getFiles().contains(B1_1File));
+		assertTrue(B1.getChildren().contains(B11));
+		// Change contents of old AFile and make sure they don't change in new
+		// AFile
+		oldFile.alterContents("Try new contents", true);
+		assertEquals(oldFile.getContents(), "Try new contents");
+		assertEquals(newFile.getContents(), "A test contents");
+	}
+
+	@Test
+	public void testEnteredCommand_cpF2D() {
+		// testing same cases of cp as in TestingFileMovement: File to Directory
+		B1.setWorkingDirectory();
+		Input.enteredCommand("cp /A/AFile .");
+		File oldFile = (File) A.fileSystemNameToObject("AFile");
+		File newFile = (File) B1.fileSystemNameToObject("AFile");
+		// make sure AFile still exists in dir A
+		assertTrue(A.getFiles().contains(oldFile));
+		// check that file was copied
+		assertTrue(B1.getFiles().contains(newFile));
+		assertEquals(oldFile.getContents(), "A test contents");
+		assertEquals(newFile.getContents(), "A test contents");
+		// check to ensure B1 still contains old files and directories
+		assertTrue(B1.getFiles().contains(B1_1File));
+		assertTrue(B1.getChildren().contains(B11));
+		// Change contents of old AFile and make sure they don't change in new
+		// AFile
+		oldFile.alterContents("Try new contents", true);
+		assertEquals(oldFile.getContents(), "Try new contents");
+		assertEquals(newFile.getContents(), "A test contents");
+	}
+
+	@Test
+	public void testEnteredCommand_cpD2D() {
+		// testing same cases of cp as in TestingFileMovement: Directory to
+		// Directory
+		B11.setWorkingDirectory();
+		Input.enteredCommand("cp /A ..");
+		Directory oldDir = (Directory) Directory.root
+				.fileSystemNameToObject("A");
+		Directory newDir = (Directory) B1.fileSystemNameToObject("A");
+		// make sure A still exists in dir root
+		assertTrue(Directory.root.getChildren().contains(oldDir));
+		// check that the dir was copied
+		assertTrue(B1.getChildren().contains(newDir));
+		// check to ensure B1 still contains old files and directories
+		assertTrue(B1.getFiles().contains(B1_1File));
+		assertTrue(B1.getChildren().contains(B11));
+		// Make sure the new directory contains all its children and files
+		assertTrue(newDir.fileSystemInDirectory("A1"));
+		assertTrue(newDir.fileSystemInDirectory("AFile"));
+		// Make sure the old directory still contains all its children and files
+		assertTrue(oldDir.getChildren().contains(A1));
+		assertTrue(oldDir.getFiles().contains(AFile));
+		// Delete old A directory and make sure new A directory still exists
+		oldDir.deleteFileSystem();
+		assertFalse(Directory.root.fileSystemInDirectory("A"));
+		assertTrue(B1.fileSystemInDirectory("A"));
+	}
+
+	@Test
+	public void testCheckPath() {
+		// testing checkPath with a valid input, assuming not allowing
+		// nonexisting directories as the last input
+		assertEquals(Input.checkPath("/A/A1", false), true);
+		// testing checkPath with a valid input, assuming allowing nonexisting
+		// directories as the last input
+		assertEquals(Input.checkPath("/A/A1/A11", true), true);
+		// testing checkPath with invalid input, assuming not allowing
+		// nonexisting directories as the last input
+		assertEquals(Input.checkPath("/A/A1/A11", false), false);
+		assertEquals(Input.checkPath("d", false), false);
+		// testing checkPath with invalid input, assuming allowing nonexisting
+		// directories as the last input
+		assertEquals(Input.checkPath("/A/A1/A11/A1223", true), false);
+		assertEquals(Input.checkPath("A/A1/A11/A1223", true), false);
+		assertEquals(Input.checkPath("A/B/C", true), false);
+	}
+}

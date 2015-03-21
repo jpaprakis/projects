@@ -1,0 +1,78 @@
+package driver;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Extractor {
+	
+	private String parsedURL;
+	
+	/**
+	 * Generic extraction method - will extract from the HTML of the given
+	 * googleScholarURL the string that matches the regex pattern given in
+	 * reForExtraction and return it
+	 * 
+	 * @param googleScholarURL
+	 *            the URL of the webpage to extract from
+	 * @param regEx
+	 *            the regex pattern to match
+	 */
+	
+
+	public Extractor (String googleScholarURL) {
+		try {
+		      MyParser googleScholarParser = new MyParser();
+		      this.parsedURL = googleScholarParser.getHTML(googleScholarURL);
+		}
+		catch (Exception e) {
+			System.out.println("malformed URL or cannot open connection to "
+			          + "given URL");
+		}
+	}
+	
+	public StringBuilder simpleExtract(String regEx) {
+		      Pattern patternObject = Pattern.compile(regEx);
+		      Matcher matcherObject = patternObject.matcher(this.parsedURL);
+		      StringBuilder matchedString = new StringBuilder();
+		      while (matcherObject.find()) {
+		        matchedString.append(matcherObject.group(1));
+		      }
+		      return matchedString;
+	}
+	
+	public HashSet<String> noDuplicateExtract(String regEx, int setSize) {
+	      Pattern patternObject = Pattern.compile(regEx);
+	      Matcher matcherObject = patternObject.matcher(this.parsedURL);
+	      HashSet<String> matchedSet = new HashSet<String>();
+	      int i = 0;
+	      //appends to the list while the matcher finds the pattern, AND
+	      //counter i is less than the specified set size - if setSize < 0,
+	      //then there is no size restriction
+	      while (matcherObject.find() && ((i < setSize) || setSize < 0)) {
+	        matchedSet.add(matcherObject.group(1));
+	        i ++;
+	      }
+	      return matchedSet;	
+	}
+	
+	public List<String> duplicateExtract(String regEx, int setSize) {
+	      Pattern patternObject = Pattern.compile(regEx);
+	      Matcher matcherObject = patternObject.matcher(this.parsedURL);
+	      List<String> matchedSet = new ArrayList<String>();
+	      int i = 0;
+	      //appends to the list while the matcher finds the pattern, AND
+	      //counter i is less than the specified set size - if setSize < 0,
+	      //then there is no size restriction
+	      while (matcherObject.find() && ((i < setSize) || setSize < 0)) {
+	        matchedSet.add(matcherObject.group(1));
+	        i ++;
+	      }
+	      return matchedSet;	
+	}
+	
+
+	
+}

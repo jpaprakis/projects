@@ -1,0 +1,15 @@
+a) What did I work on last time? 
+	-Worked on Initial Product backlog with team
+	-Worked on Sprint 1 backlog with team
+	-Completed the directory search method (and tested, looks like it's
+	working!)
+	-Worked on a method in the Directory class to add files when new ones are
+	created, and constructors in the File class
+
+b) What do I plan to work on now?  
+	-Work on a method to create new files
+
+c) Am I blocked on anything?  
+	-I will be out of the province this Friday - Sunday, so I will not be able 
+	to contribute during that time. I will need to finish all my tasks for this
+	sprint (and begin some of my tasks for the next sprint) before Friday.

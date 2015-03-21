@@ -1,0 +1,290 @@
+/**
+ * Directory class which establishes the basis of interactive and visible paths 
+ * in the virtual file system.
+ * 
+ * children is the list of child directories for this directory
+ * files is the list of files for this directory
+ * workingDirectory is the current working directory
+ * 
+ * @author c3chownl, c4paprak, c3tsafat, g3dakouz
+ *
+ */
+
+package driver;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Directory extends FileSystem {
+
+	private List<Directory> children = new ArrayList<Directory>();
+	private List<File> files = new ArrayList<File>();
+	public static Directory workingDirectory;
+	public static Directory root;
+
+	/**
+	 * Default constructor used to created the root directory.
+	 */
+	public Directory() {
+		super();
+		this.parent = this;
+	}
+
+	/**
+	 * Constructor used to create named, child directories
+	 * 
+	 * @param directoryName
+	 *            the name of this directory
+	 * @param parentDirectory
+	 *            the parent directory of this directory
+	 */
+	public Directory(String directoryName, Directory parentDirectory) {
+		super(directoryName, parentDirectory);
+	}
+
+	/**
+	 * Associates this directory to a parent directory
+	 * 
+	 * @param parentDirectory
+	 *            the new parent of this directory
+	 */
+	public void addToParent(Directory parentDirectory) {
+		this.parent = parentDirectory;
+		parentDirectory.children.add(this);
+	}
+
+	/**
+	 * Removes the association between this directory, its parent, and the
+	 * children of its parent directory.
+	 */
+	public void deleteFileSystem() {
+		this.getParent().children.remove(this);
+		super.deleteFileSystem();
+	}
+
+	/**
+	 * Gets the list of files for this directory.
+	 * 
+	 * @return the list of files for this directory.
+	 */
+	public List<File> getFiles() {
+		return this.files;
+	}
+
+	/**
+	 * Add in a file to the list of files for this directory.
+	 * 
+	 * @param file
+	 *            the file to be added
+	 */
+	public void addFile(File file) {
+		this.files.add(file);
+	}
+
+	/**
+	 * Remove a file from the list of files for this directory.
+	 * 
+	 * @param file
+	 *            the file to be deleted
+	 */
+	public void removeFile(File file) {
+		this.files.remove(file);
+	}
+
+	/**
+	 * Get the list of child directories for this directory .
+	 * 
+	 * @return the list of child directories
+	 */
+	public List<Directory> getChildren() {
+		return this.children;
+	}
+
+	/**
+	 * Set the list of child directories for this directory
+	 * 
+	 * @param newChildren
+	 *            the new list of child directories
+	 */
+	public void setChildren(List<Directory> newChildren) {
+		this.children = newChildren;
+	}
+
+	/**
+	 * Check to see if the FileSystem given is in the child directories of files
+	 * of this directory.
+	 * 
+	 * @param fileSystemName
+	 *            the name of the directory or file
+	 * @return true if it is in the children or list of files, false otherwise
+	 */
+	public Boolean fileSystemInDirectory(String fileSystemName) {
+		for (Directory dir : children) {
+			if (dir.name.equals(fileSystemName)) {
+				return true;
+			}
+		}
+		for (File file : files) {
+			if (file.name.equals(fileSystemName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Returns a FileSystem object given a name (assuming that this object
+	 * exists).
+	 * 
+	 * @param fileSystemName
+	 *            the name of the object
+	 * @return the FileSystem object associated with fileSystemName
+	 */
+	public FileSystem fileSystemNameToObject(String fileSystemName) {
+		for (Directory dir : children) {
+			if (fileSystemName.equals(dir.getName())) {
+				return dir;
+			}
+		}
+		for (File file : files) {
+			if (fileSystemName.equals(file.getName())) {
+				return file;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Creates of a copy of the directory specified
+	 * 
+	 * @param directoryToCopy
+	 *            the directory to copy
+	 * @return the new, copied directory
+	 */
+	public Directory copyFirstDirectory(Directory directoryToCopy) {
+		Directory dirClone = new Directory(directoryToCopy.getName(), this);
+		return dirClone;
+	}
+
+	/**
+	 * Creates directory children and files contained by the copied directory,
+	 * into the pasted directory, by calling it on the pasted directory
+	 * 
+	 * @param copiedDirectoryObject
+	 *            the copied directory object
+	 */
+	public void cloneDirectory(Directory copiedDirectoryObject) {
+		// first goes through and creates copies of the file objects into
+		// the pasted directory from the parent directory, if any
+		for (int fileNumber = 0; fileNumber < copiedDirectoryObject.files
+				.size(); fileNumber++) {
+			this.files.add(new File(copiedDirectoryObject.files.get(fileNumber)
+					.getName(), this, copiedDirectoryObject.files.get(
+					fileNumber).getContents()));
+		}
+		// If there's no children of that Directory, exits
+		if (copiedDirectoryObject.children.size() == 0) {
+			return;
+		}
+		// If there are children, goes through each child in the Parent
+		// Directory
+		// and creates it again for the copied directory.
+		// Then calls the recursive function on each child.
+		else {
+			for (int childNumber = 0; childNumber < copiedDirectoryObject.children
+					.size(); childNumber++) {
+				this.children.add(new Directory(copiedDirectoryObject.children
+						.get(childNumber).getName(), this));
+				this.children.get(childNumber).cloneDirectory(
+						copiedDirectoryObject.children.get(childNumber));
+			}
+		}
+	}
+
+	/**
+	 * Sets the working directory as this directory.
+	 */
+	public void setWorkingDirectory() {
+		workingDirectory = this;
+	}
+
+	/**
+	 * Translates the directory's location as an object to a path which is able
+	 * to be interpreted by the user.
+	 * 
+	 * @return the string representation of this object's path
+	 */
+	public String directoryLocation() {
+		String dirPath = "";
+		for (Directory dir : directoryObjectLocation()) {
+			if (dir.getName() != "/") {
+				dirPath = (dirPath + "/" + dir.getName());
+			} else {
+				dirPath = (dirPath + dir.getName());
+			}
+		}
+		return dirPath;
+	}
+
+	/**
+	 * Locate where this file is in the tree of directories within the virtual
+	 * file system.
+	 * 
+	 * @return the list of directories that lead you to this directory
+	 */
+	public List<Directory> directoryObjectLocation() {
+		List<Directory> dirList = new ArrayList<Directory>();
+		Directory currentDir = this;
+		do {
+			dirList.add(0, currentDir);
+			currentDir = (Directory) currentDir.getParent();
+		} while (currentDir != currentDir.getParent());
+		return dirList;
+	}
+
+	/**
+	 * Check to see whether this directory has itself as a parent and has the
+	 * same list of children and list of files
+	 * 
+	 * @param directoryObject
+	 *            the directory to check
+	 * @return true if the parent of this directory is itself, false otherwise
+	 */
+	public boolean equals(Directory directoryObject) {
+		return (super.equals(directoryObject))
+				&& (this.children == directoryObject.children)
+				&& (this.files == directoryObject.files);
+	}
+
+	public void removeDir(boolean f, Directory dirToRemove){
+		if(f){ 
+			dirToRemove.deleteFileSystem();
+		}
+		else{ 
+			if(dirToRemove.children.size() == 0){
+			Scanner userConfirm = new Scanner(System.in);
+			String Confirm = userConfirm.nextLine(); 
+			if (Confirm.equals("Y")){
+				dirToRemove.deleteFileSystem(); }
+				else{ 
+					return; 
+				}
+			}
+		else{
+			for(int childNum = 0; childNum < dirToRemove.children.size(); childNum ++){ 
+				if(dirToRemove.children.get(childNum).children.size() == 0){
+					Boolean confirm;
+					dirToRemove.removeDir(confirm , dirToRemove.children.get(childNum));
+					
+					
+				}
+			}
+			
+	
+		
+		}
+		
+	}
+
+}

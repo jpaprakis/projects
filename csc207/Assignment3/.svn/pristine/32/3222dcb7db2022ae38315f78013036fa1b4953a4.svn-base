@@ -1,0 +1,86 @@
+package driver;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Extractor {
+	
+	private Pattern patternObject;
+	private Matcher matcherObject;
+	private MyParser googleScholarParser = new MyParser();
+	
+	private static StringBuilder extract(String googleScholarURL, String reForExtraction) {
+		 try {
+		      MyParser googleScholarParser = new MyParser();
+		      String rawHTMLString = googleScholarParser.getHTML(googleScholarURL);
+		      Pattern patternObject = Pattern.compile(reForExtraction);
+		      Matcher matcherObject = patternObject.matcher(rawHTMLString);
+		      StringBuilder matchedString = new StringBuilder();
+		      while (matcherObject.find()) {
+		        matchedString.append(matcherObject.group(1));
+		      }
+		      return matchedString;
+
+		    } catch (Exception e) {
+		      System.out.println("malformed URL or cannot open connection to "
+		          + "given URL");
+		      return null;
+		    }
+	}
+	
+	  /*
+	   * This is a debug/helper method to help you get started. Once you understand
+	   * how this method is being used i.e. the String re, Pattern, Matcher and how
+	   * the authors name is being extracted, feel free to remove this method or
+	   * refactor it in any way you like.
+	   */
+	  public static void DEBUGextractAuthorsName(String googleScholarURL) {
+	      String reForAuthorExtraction =
+	          "<span id=\"cit-name-display\" "
+	              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+	      System.out.println("DEBUG: Author name is " + extract(googleScholarURL, reForAuthorExtraction));
+	  }
+	  
+	  
+	  public static void DEBUGextractNumAllCitations(String googleScholarURL) {
+	      String reForAuthorExtraction =
+		          "<span id=\"cit-name-display\" "
+		              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+		      System.out.println("DEBUG: num citations is " + extract(googleScholarURL, reForAuthorExtraction));
+		  }
+	  
+	  public static void DEBUGextractNumi10Citations(String googleScholarURL) {
+	      String reForAuthorExtraction =
+		          "<span id=\"cit-name-display\" "
+		              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+		      System.out.println("DEBUG: num i10 citations is " + extract(googleScholarURL, reForAuthorExtraction));
+		  }
+
+	  public static void DEBUGextractFirstThreePubs(String googleScholarURL) {
+	      String reForAuthorExtraction =
+		          "<span id=\"cit-name-display\" "
+		              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+		      System.out.println("DEBUG: first 3 pubs is " + extract(googleScholarURL, reForAuthorExtraction));
+		  }
+	  
+	  public static void DEBUGextractPaperCitations(String googleScholarURL) {
+	      String reForAuthorExtraction =
+		          "<span id=\"cit-name-display\" "
+		              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+		      System.out.println("DEBUG: num paper citations is " + extract(googleScholarURL, reForAuthorExtraction));
+		  }
+	  
+	  public static void DEBUGextractCoAuthorNum(String googleScholarURL) {
+	      String reForAuthorExtraction =
+		          "<span id=\"cit-name-display\" "
+		              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+		      System.out.println("DEBUG: num coauthors is " + extract(googleScholarURL, reForAuthorExtraction));
+		  }
+	  
+	  public static void DEBUGextractCoAuthorNames(String googleScholarURL) {
+	      String reForAuthorExtraction =
+		          "<span id=\"cit-name-display\" "
+		              + "class=\"cit-in-place-nohover\">(.*?)</span>";
+		      System.out.println("DEBUG: coauthor names is " + extract(googleScholarURL, reForAuthorExtraction));
+		  }
+}

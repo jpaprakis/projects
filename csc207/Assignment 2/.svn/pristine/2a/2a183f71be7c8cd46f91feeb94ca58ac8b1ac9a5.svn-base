@@ -1,0 +1,13 @@
+Class name: Session
+Parent class (if any): None
+Subclasses (if any): Input, Print
+
+Responsibilities:
+*Monitors and controls overall shell function, waits for user input
+*Formats user input into commands
+*Calls appropriate classes and methods
+*Presents exceptions and errors if applicable
+*Exits the program
+
+Collaborators:
+Directory, FileCommands, Print

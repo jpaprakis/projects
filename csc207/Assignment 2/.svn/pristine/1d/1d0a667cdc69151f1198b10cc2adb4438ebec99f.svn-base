@@ -1,0 +1,1207 @@
++++ASSIGNMENT2 TEAM MEMBER CONTRIBUTION+++
+
+
+
+PART 1) +++SVN CHECKOUT ON YOUR ASSIGNMENT1+++
+A    Assignment2/readMeAssignment2A.txt
+A    Assignment2/src
+A    Assignment2/src/test
+A    Assignment2/src/test/TestingPrint.java
+A    Assignment2/src/test/TestingFile.java
+A    Assignment2/src/test/TestingInput.java
+A    Assignment2/src/test/TestingJShell.java
+A    Assignment2/src/test/TestingDirectory.java
+A    Assignment2/src/test/TestingFileSystem.java
+A    Assignment2/src/test/TestingAllCommands.java
+A    Assignment2/src/test/TestingFileMovement.java
+A    Assignment2/src/driver
+A    Assignment2/src/driver/Print.java
+A    Assignment2/src/driver/File.java
+A    Assignment2/src/driver/Input.java
+A    Assignment2/src/driver/JShell.java
+A    Assignment2/src/driver/Directory.java
+A    Assignment2/src/driver/FileSystem.java
+A    Assignment2/src/driver/AllCommands.java
+A    Assignment2/src/driver/FileMovement.java
+A    Assignment2/dailyScrumMeetings
+A    Assignment2/dailyScrumMeetings/g3dakouzSprint1June21.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint2june30
+A    Assignment2/dailyScrumMeetings/g3dakouzSprint2June24.txt
+A    Assignment2/dailyScrumMeetings/g3dakouzSprint4July2.txt
+A    Assignment2/dailyScrumMeetings/g3dakouzSprint2June26.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint2June24
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint3July3
+A    Assignment2/dailyScrumMeetings/g3dakouzSprint4July6.txt
+A    Assignment2/dailyScrumMeetings/c4paprakSprint1June20.txt
+A    Assignment2/dailyScrumMeetings/c4paprakSprint2June23.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint2june30.txt
+A    Assignment2/dailyScrumMeetings/c3chownlSprint5July4
+A    Assignment2/dailyScrumMeetings/c4paprakSprint4July4.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint2June24.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint3July3.txt
+A    Assignment2/dailyScrumMeetings/readMeDailyScrumMeetings.txt
+A    Assignment2/dailyScrumMeetings/g3dakouzSprint3July1.txt
+A    Assignment2/dailyScrumMeetings/g3dakouzSprint1June18.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint3july4
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint2june26
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint1June19
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint5july5
+A    Assignment2/dailyScrumMeetings/c3chownlSprint4June30
+A    Assignment2/dailyScrumMeetings/c4paprakSprint2June30.txt
+A    Assignment2/dailyScrumMeetings/sprint2c3chownljune24
+A    Assignment2/dailyScrumMeetings/c3chownlSprint1June19
+A    Assignment2/dailyScrumMeetings/c3chownlSprint3june26
+A    Assignment2/dailyScrumMeetings/c4paprakSprint1June18.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint3july4.txt
+A    Assignment2/dailyScrumMeetings/c4paprakSprint5July6.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint2june26.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint1June19.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint5july5.txt
+A    Assignment2/dailyScrumMeetings/c3tsafatSprint5july6.txt
+A    Assignment2/.settings
+A    Assignment2/.settings/org.eclipse.jdt.ui.prefs
+A    Assignment2/.settings/org.eclipse.jdt.core.prefs
+A    Assignment2/.classpath
+A    Assignment2/sprints
+A    Assignment2/sprints/readMeSprints.txt
+A    Assignment2/sprints/Sprint1Backlog
+A    Assignment2/sprints/Sprint2Backlog
+A    Assignment2/sprints/Sprint3Backlog
+A    Assignment2/sprints/Sprint4Backlog
+A    Assignment2/sprints/Sprint5Backlog
+A    Assignment2/productBacklog
+A    Assignment2/productBacklog/productBacklogFor2A.txt
+A    Assignment2/productBacklog/readMeProductBacklog.txt
+A    Assignment2/.project
+A    Assignment2/crcCards
+A    Assignment2/crcCards/FileCommands.txt
+A    Assignment2/crcCards/JShell.txt
+A    Assignment2/crcCards/Directory.txt
+A    Assignment2/crcCards/FileSystem
+A    Assignment2/crcCards/readMeForCrcCards.txt
+A    Assignment2/crcCards/AllCommands.txt
+A    Assignment2/crcCards/FileMovement.txt
+A    Assignment2/crcCards/Print.txt
+A    Assignment2/crcCards/File.txt
+A    Assignment2/crcCards/Input.txt
+Checked out revision 258.
+
+
+
+PART 2) +++SVN COMMIT LOGS ARE+++
+Marks Deductions here (-.5 max): 
+------------------------------------------------------------------------
+r258 | c3chownl | 2014-07-06 22:54:27 -0400 (Sun, 06 Jul 2014) | 1 line
+
+formatted everything 
+------------------------------------------------------------------------
+r257 | c3chownl | 2014-07-06 22:53:54 -0400 (Sun, 06 Jul 2014) | 1 line
+
+formatted everything 
+------------------------------------------------------------------------
+r256 | c3chownl | 2014-07-06 22:53:37 -0400 (Sun, 06 Jul 2014) | 1 line
+
+formatted everything 
+------------------------------------------------------------------------
+r255 | g3dakouz | 2014-07-06 21:21:37 -0400 (Sun, 06 Jul 2014) | 1 line
+
+Updated fileMovement to FileMovement to have the same style as other classes.
+------------------------------------------------------------------------
+r254 | g3dakouz | 2014-07-06 21:20:04 -0400 (Sun, 06 Jul 2014) | 1 line
+
+Updated fileMovement to FileMovement to have the same style as other classes. Adhered to the 80-character limit on code.
+------------------------------------------------------------------------
+r253 | c4paprak | 2014-07-06 19:46:04 -0400 (Sun, 06 Jul 2014) | 1 line
+
+final commit from me - added a crc card, hope I didn't delete anything useful!
+------------------------------------------------------------------------
+r252 | c4paprak | 2014-07-06 19:41:09 -0400 (Sun, 06 Jul 2014) | 1 line
+
+With build paths
+------------------------------------------------------------------------
+r251 | c4paprak | 2014-07-06 19:38:15 -0400 (Sun, 06 Jul 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r250 | c4paprak | 2014-07-06 19:38:03 -0400 (Sun, 06 Jul 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r249 | c4paprak | 2014-07-06 19:37:56 -0400 (Sun, 06 Jul 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r245 | c4paprak | 2014-07-06 19:28:28 -0400 (Sun, 06 Jul 2014) | 1 line
+
+fixed input so no error message for mv and cp.
+------------------------------------------------------------------------
+r244 | g3dakouz | 2014-07-06 19:21:47 -0400 (Sun, 06 Jul 2014) | 1 line
+
+Added case for an invalid command entered
+------------------------------------------------------------------------
+r243 | c4paprak | 2014-07-06 19:16:53 -0400 (Sun, 06 Jul 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r242 | c4paprak | 2014-07-06 19:10:26 -0400 (Sun, 06 Jul 2014) | 1 line
+
+fixed filemovement so cd won't create extra new directories if cp called on dir-dir: where second dir doesn't exist. Will create second dir and rename.
+------------------------------------------------------------------------
+r241 | c4paprak | 2014-07-06 18:36:29 -0400 (Sun, 06 Jul 2014) | 1 line
+
+added param docs for new filemovement param
+------------------------------------------------------------------------
+r240 | c4paprak | 2014-07-06 18:22:03 -0400 (Sun, 06 Jul 2014) | 1 line
+
+fixed testingfilemovement to call methods properly as signature has changed
+------------------------------------------------------------------------
+r239 | c4paprak | 2014-07-06 18:20:27 -0400 (Sun, 06 Jul 2014) | 1 line
+
+changed mv and cd so that there are no longer errors for valid inputs.
+------------------------------------------------------------------------
+r238 | g3dakouz | 2014-07-06 18:15:30 -0400 (Sun, 06 Jul 2014) | 1 line
+
+Added some JavaDoc for the later functions and tried to work out issue with checkPath
+------------------------------------------------------------------------
+r237 | c4paprak | 2014-07-06 18:09:44 -0400 (Sun, 06 Jul 2014) | 1 line
+
+changed cp so that it will copy to a non existant directory
+------------------------------------------------------------------------
+r236 | c4paprak | 2014-07-06 17:39:48 -0400 (Sun, 06 Jul 2014) | 1 line
+
+mv works now, added method to test if we're moving a file to a directory. Need to still figure out why we're getting an invalid directory error
+------------------------------------------------------------------------
+r235 | c4paprak | 2014-07-06 17:27:04 -0400 (Sun, 06 Jul 2014) | 1 line
+
+fixed mv but still getting an error from checkpath
+------------------------------------------------------------------------
+r234 | c4paprak | 2014-07-06 17:16:03 -0400 (Sun, 06 Jul 2014) | 1 line
+
+added last scrum meeting and changed mine to .txt
+------------------------------------------------------------------------
+r233 | c3tsafat | 2014-07-06 17:15:59 -0400 (Sun, 06 Jul 2014) | 1 line
+
+Changed sprints to txt files
+------------------------------------------------------------------------
+r232 | c3tsafat | 2014-07-06 17:14:14 -0400 (Sun, 06 Jul 2014) | 1 line
+
+Sprint for july 6th
+------------------------------------------------------------------------
+r231 | c3chownl | 2014-07-06 15:58:52 -0400 (Sun, 06 Jul 2014) | 2 lines
+
+testing with a failure 
+
+------------------------------------------------------------------------
+r230 | c3chownl | 2014-07-06 15:48:45 -0400 (Sun, 06 Jul 2014) | 2 lines
+
+testing with a failure 
+
+------------------------------------------------------------------------
+r229 | g3dakouz | 2014-07-06 15:29:13 -0400 (Sun, 06 Jul 2014) | 1 line
+
+Added a NoTarget test case for MoveFileToFile
+------------------------------------------------------------------------
+r228 | g3dakouz | 2014-07-06 15:11:43 -0400 (Sun, 06 Jul 2014) | 1 line
+
+Fixed test cases for Input class not working by fiddling with the checkPath method!
+------------------------------------------------------------------------
+r227 | c3chownl | 2014-07-06 14:52:22 -0400 (Sun, 06 Jul 2014) | 1 line
+
+got rid of errors but not in printDirContents, nullpointerError 
+------------------------------------------------------------------------
+r226 | g3dakouz | 2014-07-06 14:26:27 -0400 (Sun, 06 Jul 2014) | 1 line
+
+Committed new scrum meeting.
+------------------------------------------------------------------------
+r225 | c4paprak | 2014-07-06 11:35:37 -0400 (Sun, 06 Jul 2014) | 1 line
+
+testCheckPath is failing for a case - need to figure out why
+------------------------------------------------------------------------
+r224 | c4paprak | 2014-07-06 10:56:30 -0400 (Sun, 06 Jul 2014) | 1 line
+
+added a case in mv for when second file/dir doesn't exist - not working, need to fix checkPath
+------------------------------------------------------------------------
+r223 | c4paprak | 2014-07-06 10:56:04 -0400 (Sun, 06 Jul 2014) | 1 line
+
+committing changes to input (mostly mv) - it seems that checkPath isn't working fully
+------------------------------------------------------------------------
+r222 | c4paprak | 2014-07-06 09:59:18 -0400 (Sun, 06 Jul 2014) | 1 line
+
+fixed ls, returns appropriate string
+------------------------------------------------------------------------
+r221 | c4paprak | 2014-07-06 09:59:00 -0400 (Sun, 06 Jul 2014) | 1 line
+
+fixed mkdir - no more duplicate directories, gives appropriate error if duplicate names entered in parent
+------------------------------------------------------------------------
+r220 | c3chownl | 2014-07-05 21:12:00 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+JAva docs 
+
+------------------------------------------------------------------------
+r219 | c4paprak | 2014-07-05 20:57:45 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Committed whatever changes i did - mostly to input, mkdir is broken need to fix it tonight
+------------------------------------------------------------------------
+r218 | c3chownl | 2014-07-05 20:28:47 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+just need to test one last method in print 
+
+------------------------------------------------------------------------
+r217 | c4paprak | 2014-07-05 20:24:03 -0400 (Sat, 05 Jul 2014) | 1 line
+
+added checking for mkdir
+------------------------------------------------------------------------
+r216 | c3tsafat | 2014-07-05 20:15:17 -0400 (Sat, 05 Jul 2014) | 1 line
+
+adding in some stuff to check if directories exist
+------------------------------------------------------------------------
+r215 | c4paprak | 2014-07-05 19:23:23 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Finished TestInput except for the print methods which we need to test (ie. echo)
+------------------------------------------------------------------------
+r214 | c4paprak | 2014-07-05 19:09:18 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Added some more testingInput methods, came across an error with "." as a path
+------------------------------------------------------------------------
+r213 | g3dakouz | 2014-07-05 18:34:44 -0400 (Sat, 05 Jul 2014) | 1 line
+
+fixed input to check if a directory exists or not, throws error on latter case
+------------------------------------------------------------------------
+r212 | c3chownl | 2014-07-05 18:25:10 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+TestingPrint added 
+
+------------------------------------------------------------------------
+r211 | c4paprak | 2014-07-05 18:19:20 -0400 (Sat, 05 Jul 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r210 | g3dakouz | 2014-07-05 18:16:50 -0400 (Sat, 05 Jul 2014) | 1 line
+
+checked inputs on jshell in input to make sure that the directories you are accessing exist
+------------------------------------------------------------------------
+r209 | c3tsafat | 2014-07-05 18:13:34 -0400 (Sat, 05 Jul 2014) | 1 line
+
+added statements to check for valid size of command inputs
+------------------------------------------------------------------------
+r208 | c4paprak | 2014-07-05 18:01:25 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Mostly changes done to TestingInput
+------------------------------------------------------------------------
+r207 | c3chownl | 2014-07-05 17:21:20 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+made format of Testcase Print 
+
+------------------------------------------------------------------------
+r206 | c3chownl | 2014-07-05 17:14:21 -0400 (Sat, 05 Jul 2014) | 1 line
+
+added a crcCard 
+------------------------------------------------------------------------
+r205 | g3dakouz | 2014-07-05 17:14:17 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Updated 'cat' to actually work with paths
+------------------------------------------------------------------------
+r204 | c3chownl | 2014-07-05 17:10:43 -0400 (Sat, 05 Jul 2014) | 1 line
+
+edited text and made print, println.
+------------------------------------------------------------------------
+r203 | c3chownl | 2014-07-05 17:10:24 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+Nothing changed 
+
+------------------------------------------------------------------------
+r202 | c3chownl | 2014-07-05 17:09:46 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+changed print to println
+
+------------------------------------------------------------------------
+r201 | c3chownl | 2014-07-05 16:46:39 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+fixed text in Print 
+
+------------------------------------------------------------------------
+r200 | c3chownl | 2014-07-05 16:46:25 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+removed man from AllCommands 
+
+------------------------------------------------------------------------
+r199 | c3chownl | 2014-07-05 16:45:57 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+fixed man 
+
+------------------------------------------------------------------------
+r198 | c3chownl | 2014-07-05 16:40:14 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+added the man 
+
+------------------------------------------------------------------------
+r197 | c3tsafat | 2014-07-05 16:26:58 -0400 (Sat, 05 Jul 2014) | 1 line
+
+sprint for july 5th
+------------------------------------------------------------------------
+r196 | g3dakouz | 2014-07-05 16:26:09 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Renamed scrum meeting
+------------------------------------------------------------------------
+r195 | c3tsafat | 2014-07-05 16:25:36 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Sprint backlog for the last two days
+------------------------------------------------------------------------
+r194 | g3dakouz | 2014-07-05 16:25:29 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Added checkInput(List<String>) command and changed JShell to use exitShell properly.
+------------------------------------------------------------------------
+r193 | c4paprak | 2014-07-05 15:47:00 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Changed root to be a static variable in Directory opposed to in jShell. Added some more AllCommands testing
+------------------------------------------------------------------------
+r192 | g3dakouz | 2014-07-05 15:42:51 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Edited code to make it compliant with the 80-character limit.
+------------------------------------------------------------------------
+r191 | g3dakouz | 2014-07-05 15:35:02 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Updated Print JavaDoc
+------------------------------------------------------------------------
+r190 | g3dakouz | 2014-07-05 15:32:15 -0400 (Sat, 05 Jul 2014) | 2 lines
+
+Updated some JavaDocs
+
+------------------------------------------------------------------------
+r189 | g3dakouz | 2014-07-05 15:16:06 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Added JavaDoc for fileMovement.
+------------------------------------------------------------------------
+r188 | g3dakouz | 2014-07-05 15:13:01 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Added JavaDoc for Directory and File classes.
+------------------------------------------------------------------------
+r187 | g3dakouz | 2014-07-05 15:04:18 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Created JavaDoc for FileSystem and Directory classes.
+------------------------------------------------------------------------
+r186 | g3dakouz | 2014-07-05 14:52:59 -0400 (Sat, 05 Jul 2014) | 1 line
+
+JavaDocs for FileSystem and JShell created.
+------------------------------------------------------------------------
+r185 | g3dakouz | 2014-07-05 14:43:11 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Created JavaDoc for AllCommands.
+------------------------------------------------------------------------
+r184 | c4paprak | 2014-07-05 14:39:27 -0400 (Sat, 05 Jul 2014) | 1 line
+
+chnaged some more print and allcommands stuff
+------------------------------------------------------------------------
+r183 | c4paprak | 2014-07-05 14:35:38 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Changed all tests to have getters since filesystem attributes all private now
+------------------------------------------------------------------------
+r182 | c4paprak | 2014-07-05 14:25:37 -0400 (Sat, 05 Jul 2014) | 1 line
+
+moved some more stuff to the print class from AllCommands, tested file echo method
+------------------------------------------------------------------------
+r181 | g3dakouz | 2014-07-05 14:25:19 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Changed visibility of children and files and whatever.
+------------------------------------------------------------------------
+r180 | g3dakouz | 2014-07-05 14:05:16 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Changed visibility of 'parent' 'name' of Filesystem and 'contents' of File. Created setters and getters and worked with code outside of this to make sure it still runs!
+------------------------------------------------------------------------
+r179 | c4paprak | 2014-07-05 13:58:27 -0400 (Sat, 05 Jul 2014) | 1 line
+
+changed echo again
+------------------------------------------------------------------------
+r178 | c4paprak | 2014-07-05 13:51:31 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Starting testing allcommands, moved echo to print class and called it from there in input.
+------------------------------------------------------------------------
+r177 | g3dakouz | 2014-07-05 13:50:58 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Created JavaDoc for main Input class.
+------------------------------------------------------------------------
+r176 | c4paprak | 2014-07-05 13:45:29 -0400 (Sat, 05 Jul 2014) | 1 line
+
+mv and cp are working in FileMovement, and TestFileMovement is done
+------------------------------------------------------------------------
+r175 | g3dakouz | 2014-07-05 13:38:28 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Fixed up enteredCommand JavaDoc.
+------------------------------------------------------------------------
+r174 | g3dakouz | 2014-07-05 13:35:23 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Completed JavaDocs for many functions in Input.
+------------------------------------------------------------------------
+r173 | g3dakouz | 2014-07-05 13:23:34 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Removed some filler comments.
+------------------------------------------------------------------------
+r172 | c4paprak | 2014-07-05 13:06:51 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Fixed duplicate directories that were being added
+------------------------------------------------------------------------
+r171 | c4paprak | 2014-07-05 11:58:18 -0400 (Sat, 05 Jul 2014) | 1 line
+
+Changed method names in print class so that there are no errors
+------------------------------------------------------------------------
+r170 | c3chownl | 2014-07-04 22:06:15 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Had to fix the man method to print out contents.
+------------------------------------------------------------------------
+r169 | c3chownl | 2014-07-04 21:38:35 -0400 (Fri, 04 Jul 2014) | 1 line
+
+decided to use a Scanner instead of using BufferedReader 
+------------------------------------------------------------------------
+r168 | c3tsafat | 2014-07-04 19:51:30 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Updated the contents of the manual files
+------------------------------------------------------------------------
+r167 | c3tsafat | 2014-07-04 19:19:10 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Made a manual folder containing all the command text files
+------------------------------------------------------------------------
+r166 | c3tsafat | 2014-07-04 19:15:30 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Syntax error fixed
+------------------------------------------------------------------------
+r165 | c3chownl | 2014-07-04 19:11:33 -0400 (Fri, 04 Jul 2014) | 1 line
+
+made method that prints out items in a txt file 
+------------------------------------------------------------------------
+r164 | c3tsafat | 2014-07-04 19:00:15 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Implimented the man command in the input file
+------------------------------------------------------------------------
+r163 | c3tsafat | 2014-07-04 18:59:15 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Created a method for man that takes in a command and finds and reads the appropriate txt file associated with cmd
+------------------------------------------------------------------------
+r162 | c3tsafat | 2014-07-04 18:29:23 -0400 (Fri, 04 Jul 2014) | 2 lines
+
+sprint for july4th
+
+------------------------------------------------------------------------
+r161 | c3chownl | 2014-07-04 18:24:36 -0400 (Fri, 04 Jul 2014) | 1 line
+
+committed the function of man in print, Jacob is adding in the descriptions 
+------------------------------------------------------------------------
+r160 | c4paprak | 2014-07-04 17:01:14 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Started testingfilemovement jUnit tests
+------------------------------------------------------------------------
+r159 | c3chownl | 2014-07-04 16:24:30 -0400 (Fri, 04 Jul 2014) | 2 lines
+
+added a scrum for the day then working on code 
+
+------------------------------------------------------------------------
+r158 | c4paprak | 2014-07-04 16:16:01 -0400 (Fri, 04 Jul 2014) | 1 line
+
+c4paprakSprint4July4
+------------------------------------------------------------------------
+r157 | c4paprak | 2014-07-04 16:11:03 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Added Sprint4Backlog
+------------------------------------------------------------------------
+r156 | c4paprak | 2014-07-04 15:54:14 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Added TestingFile junit test, got rid of addFile method in directory which was duplicating files
+------------------------------------------------------------------------
+r154 | c4paprak | 2014-07-04 15:11:05 -0400 (Fri, 04 Jul 2014) | 1 line
+
+completed Directory class tests
+------------------------------------------------------------------------
+r153 | c4paprak | 2014-07-04 14:25:12 -0400 (Fri, 04 Jul 2014) | 1 line
+
+changed cloneDirectory to add to this.files opposed to create a new files array
+------------------------------------------------------------------------
+r152 | c4paprak | 2014-07-04 13:45:17 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Directory Tests so Far
+------------------------------------------------------------------------
+r151 | c4paprak | 2014-07-04 12:41:31 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Added jUnit tests for FileSystem class
+------------------------------------------------------------------------
+r150 | c4paprak | 2014-07-04 12:09:39 -0400 (Fri, 04 Jul 2014) | 1 line
+
+created equals method override in File class
+------------------------------------------------------------------------
+r149 | c4paprak | 2014-07-04 12:02:49 -0400 (Fri, 04 Jul 2014) | 1 line
+
+created equals method override in Directory class
+------------------------------------------------------------------------
+r148 | c4paprak | 2014-07-04 11:59:30 -0400 (Fri, 04 Jul 2014) | 1 line
+
+created equals method override in FileSystem class
+------------------------------------------------------------------------
+r147 | c4paprak | 2014-07-04 10:05:33 -0400 (Fri, 04 Jul 2014) | 1 line
+
+changed mv and cp methods to static
+------------------------------------------------------------------------
+r146 | c4paprak | 2014-07-04 10:05:19 -0400 (Fri, 04 Jul 2014) | 1 line
+
+updated method so that ls can call it.
+------------------------------------------------------------------------
+r145 | c4paprak | 2014-07-04 10:05:00 -0400 (Fri, 04 Jul 2014) | 1 line
+
+Updated input so it should properly be calling mv and cp now. Still need to test mv and cp. Also moved ls function to the print class, only calls it from input now.
+------------------------------------------------------------------------
+r144 | c3tsafat | 2014-07-03 21:00:46 -0400 (Thu, 03 Jul 2014) | 1 line
+
+Added mv and cp to input.java
+------------------------------------------------------------------------
+r143 | c3tsafat | 2014-07-03 20:52:07 -0400 (Thu, 03 Jul 2014) | 1 line
+
+Spring for july 3rd
+------------------------------------------------------------------------
+r142 | c4paprak | 2014-07-03 18:15:18 -0400 (Thu, 03 Jul 2014) | 1 line
+
+Adding a test class
+------------------------------------------------------------------------
+r141 | g3dakouz | 2014-07-02 17:17:49 -0400 (Wed, 02 Jul 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r140 | g3dakouz | 2014-07-02 17:14:32 -0400 (Wed, 02 Jul 2014) | 1 line
+
+Fixed bug with File class.
+------------------------------------------------------------------------
+r139 | g3dakouz | 2014-07-02 17:13:29 -0400 (Wed, 02 Jul 2014) | 3 lines
+
+Completed 'ls' commmand.
+
+Had to alter some File properties and need to fix a bug with File where two objects are made instead of one.
+------------------------------------------------------------------------
+r138 | g3dakouz | 2014-07-02 16:45:09 -0400 (Wed, 02 Jul 2014) | 3 lines
+
+Completed echo and echoFile commands for (echo STRING [> OUTFILE] and echo STRING >> OUTFILE).
+
+Had to alter File and Directory so that they would actually add themselves to their parent's children or files arrayLists to keep track of them.
+------------------------------------------------------------------------
+r137 | g3dakouz | 2014-07-02 16:08:58 -0400 (Wed, 02 Jul 2014) | 4 lines
+
+Modified Directory because children were not being added to directories when constructed.
+Input, JShell, and AllCommands modified.
+
+cd and mkdir now work!!!
+------------------------------------------------------------------------
+r136 | g3dakouz | 2014-07-01 17:48:22 -0400 (Tue, 01 Jul 2014) | 1 line
+
+Scrum meeting added
+------------------------------------------------------------------------
+r135 | c3chownl | 2014-07-01 01:11:46 -0400 (Tue, 01 Jul 2014) | 2 lines
+
+I added in a new sprint 
+
+------------------------------------------------------------------------
+r134 | c3chownl | 2014-06-30 23:19:40 -0400 (Mon, 30 Jun 2014) | 2 lines
+
+finished cp method 
+
+------------------------------------------------------------------------
+r133 | c4paprak | 2014-06-30 21:35:52 -0400 (Mon, 30 Jun 2014) | 1 line
+
+ committing everything before I leave (only changed JUnit to import testing stuff I think)
+------------------------------------------------------------------------
+r132 | g3dakouz | 2014-06-30 21:35:07 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Fixed up some input and directory stuff.
+------------------------------------------------------------------------
+r131 | c4paprak | 2014-06-30 21:31:21 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Fixed printFileContents method
+------------------------------------------------------------------------
+r130 | c4paprak | 2014-06-30 21:21:46 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Deleted an extra bracket in File
+------------------------------------------------------------------------
+r129 | c4paprak | 2014-06-30 21:20:59 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Deleted findFileSystem
+------------------------------------------------------------------------
+r128 | g3dakouz | 2014-06-30 21:16:31 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Lots of changes to fix up JShell and Input.
+------------------------------------------------------------------------
+r127 | c4paprak | 2014-06-30 21:01:29 -0400 (Mon, 30 Jun 2014) | 1 line
+
+committing Directory with changed AddtoPArent
+------------------------------------------------------------------------
+r126 | c4paprak | 2014-06-30 21:01:08 -0400 (Mon, 30 Jun 2014) | 1 line
+
+committing file with changed AddtoPArent
+------------------------------------------------------------------------
+r125 | c4paprak | 2014-06-30 21:00:50 -0400 (Mon, 30 Jun 2014) | 1 line
+
+committing filesystem with changed AddtoPArent
+------------------------------------------------------------------------
+r124 | c4paprak | 2014-06-30 21:00:31 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Created mv class using polymorphism - need to test it
+------------------------------------------------------------------------
+r122 | c4paprak | 2014-06-30 20:34:23 -0400 (Mon, 30 Jun 2014) | 1 line
+
+fileMovement updates
+------------------------------------------------------------------------
+r121 | c3chownl | 2014-06-30 20:22:33 -0400 (Mon, 30 Jun 2014) | 1 line
+
+changed cloneDirectory method to Array list 
+------------------------------------------------------------------------
+r120 | c3tsafat | 2014-06-30 20:20:20 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Changed the print method to accommodate the new arraylist changes
+------------------------------------------------------------------------
+r119 | c3tsafat | 2014-06-30 20:17:00 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Changed the deletefilesystem method
+------------------------------------------------------------------------
+r118 | g3dakouz | 2014-06-30 20:03:43 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Created a few methods to check where a directory's location is as well as a few methods for Input and AllCommands that work together.
+------------------------------------------------------------------------
+r117 | c3chownl | 2014-06-30 19:35:43 -0400 (Mon, 30 Jun 2014) | 1 line
+
+fixed directory class to use ArrayList 
+------------------------------------------------------------------------
+r116 | g3dakouz | 2014-06-30 19:09:40 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Removed some obsolete functions and added some functionality to Input.
+------------------------------------------------------------------------
+r115 | c4paprak | 2014-06-30 19:06:02 -0400 (Mon, 30 Jun 2014) | 1 line
+
+added Super.deleteFileSystem to the bottom
+------------------------------------------------------------------------
+r114 | c4paprak | 2014-06-30 19:04:15 -0400 (Mon, 30 Jun 2014) | 1 line
+
+changed deleteFileSystem()
+------------------------------------------------------------------------
+r113 | c4paprak | 2014-06-30 18:53:54 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Changed File to work with FileSystem superclass
+------------------------------------------------------------------------
+r112 | g3dakouz | 2014-06-30 18:49:24 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Created a proper path parser and combined a few methods in Directory. Removed old parsing methods.
+------------------------------------------------------------------------
+r111 | c4paprak | 2014-06-30 18:48:35 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Updated Directory to work with FileSystem superclass - still need to change nameToDirectory/nameToFile methods and add in array list stuff.
+------------------------------------------------------------------------
+r110 | c4paprak | 2014-06-30 18:32:21 -0400 (Mon, 30 Jun 2014) | 1 line
+
+changed name of some things in FileSystem
+------------------------------------------------------------------------
+r109 | c3tsafat | 2014-06-30 18:30:17 -0400 (Mon, 30 Jun 2014) | 2 lines
+
+Changed the addDirectorytoParent method, and changed children and file to arraylists
+
+------------------------------------------------------------------------
+r108 | c3chownl | 2014-06-30 18:08:29 -0400 (Mon, 30 Jun 2014) | 1 line
+
+I had to delete this scrum I forgot to re-add it the same day. Re-adding it on June 30th 
+------------------------------------------------------------------------
+r107 | c4paprak | 2014-06-30 18:01:04 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Added FileSystem class with common methods that File and Directory will have. Need to still update the methods w/ array lists (once other group members change this).
+------------------------------------------------------------------------
+r106 | c4paprak | 2014-06-30 17:51:45 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Adding Sprint2June30
+------------------------------------------------------------------------
+r105 | c3tsafat | 2014-06-30 17:49:39 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Daily scrum meeting, june 30th
+------------------------------------------------------------------------
+r104 | c4paprak | 2014-06-30 17:36:04 -0400 (Mon, 30 Jun 2014) | 1 line
+
+Committing new FileSystem class
+------------------------------------------------------------------------
+r103 | g3dakouz | 2014-06-28 12:43:14 -0400 (Sat, 28 Jun 2014) | 1 line
+
+Renamed one of my sprints
+------------------------------------------------------------------------
+r102 | c3tsafat | 2014-06-27 18:20:06 -0400 (Fri, 27 Jun 2014) | 1 line
+
+New sprint backlog, mostly fixing old mistakes
+------------------------------------------------------------------------
+r101 | c4paprak | 2014-06-27 17:23:11 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Trying to figure out issues with pathToParts
+------------------------------------------------------------------------
+r100 | c4paprak | 2014-06-27 16:50:25 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Fixed setWorkingDirectory method
+------------------------------------------------------------------------
+r99 | c4paprak | 2014-06-27 16:42:48 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Fixed brackets on if statement
+------------------------------------------------------------------------
+r98 | c4paprak | 2014-06-27 16:37:06 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Moved mkDir to input number of 2 since it's invalid if no dirs are entered
+------------------------------------------------------------------------
+r97 | c4paprak | 2014-06-27 16:28:31 -0400 (Fri, 27 Jun 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r96 | c4paprak | 2014-06-27 16:23:55 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Finished PrintDirContents method
+------------------------------------------------------------------------
+r95 | g3dakouz | 2014-06-27 16:14:27 -0400 (Fri, 27 Jun 2014) | 1 line
+
+mkdir implemented
+------------------------------------------------------------------------
+r94 | c3chownl | 2014-06-27 16:12:02 -0400 (Fri, 27 Jun 2014) | 2 lines
+
+finished mv method 
+
+------------------------------------------------------------------------
+r93 | g3dakouz | 2014-06-27 16:07:50 -0400 (Fri, 27 Jun 2014) | 1 line
+
+cd and stuff
+------------------------------------------------------------------------
+r92 | c4paprak | 2014-06-27 16:07:18 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Fixed JShell weird merge
+------------------------------------------------------------------------
+r91 | c4paprak | 2014-06-27 16:02:19 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Removed the deleteFile method from directory and brought it to File
+------------------------------------------------------------------------
+r90 | c4paprak | 2014-06-27 16:02:02 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Added the deleteFile method which actually deletes a file from its original directory's file array
+------------------------------------------------------------------------
+r89 | c4paprak | 2014-06-27 15:55:38 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Changed delete directory function to say "this" instead so it can be called outside of directory
+------------------------------------------------------------------------
+r88 | c4paprak | 2014-06-27 15:53:14 -0400 (Fri, 27 Jun 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r87 | g3dakouz | 2014-06-27 15:51:22 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Tons of pre-demo changes.
+------------------------------------------------------------------------
+r86 | c4paprak | 2014-06-27 15:49:13 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Added a new class, "addDirectoryToParent", which will add a new child to the parent directory
+------------------------------------------------------------------------
+r85 | c4paprak | 2014-06-27 15:36:56 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Changed the delete directory method so that it removes the dir from its parent's children array
+------------------------------------------------------------------------
+r84 | g3dakouz | 2014-06-27 14:57:03 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Created directoryLocation() method.
+------------------------------------------------------------------------
+r83 | c4paprak | 2014-06-27 14:21:27 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Deleted old recursive search directory method
+------------------------------------------------------------------------
+r82 | g3dakouz | 2014-06-27 14:19:48 -0400 (Fri, 27 Jun 2014) | 1 line
+
+findDirectory(String[]) works!
+------------------------------------------------------------------------
+r81 | c4paprak | 2014-06-27 14:17:37 -0400 (Fri, 27 Jun 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r80 | c4paprak | 2014-06-27 14:10:00 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Added method to check if input is relative to current working dir or is a full path
+------------------------------------------------------------------------
+r79 | c4paprak | 2014-06-27 14:05:24 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Merged my and Daniil's changes, updated workingDirectory
+------------------------------------------------------------------------
+r78 | g3dakouz | 2014-06-27 13:59:21 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Fixed static/non-static error.
+------------------------------------------------------------------------
+r77 | g3dakouz | 2014-06-27 13:57:56 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Created findDirectory and stringToParts.
+------------------------------------------------------------------------
+r76 | g3dakouz | 2014-06-27 13:23:12 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Added JShell properties, a few Directory methods, and other to prepare for demo.
+------------------------------------------------------------------------
+r75 | c3chownl | 2014-06-27 12:13:38 -0400 (Fri, 27 Jun 2014) | 2 lines
+
+took out working directory 
+
+------------------------------------------------------------------------
+r74 | c4paprak | 2014-06-27 10:33:47 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Fixed the recursive copy directory method, since it needed to initalize arrays so it wouldn't give errors.
+------------------------------------------------------------------------
+r73 | c3chownl | 2014-06-27 09:54:34 -0400 (Fri, 27 Jun 2014) | 2 lines
+
+deleted sprint as Juli had problems
+
+------------------------------------------------------------------------
+r72 | c4paprak | 2014-06-27 09:36:52 -0400 (Fri, 27 Jun 2014) | 1 line
+
+Resolved conflicts, added comments on the recursive copy directory method.
+------------------------------------------------------------------------
+r71 | c3tsafat | 2014-06-26 23:55:11 -0400 (Thu, 26 Jun 2014) | 1 line
+
+Got rid of checking if it's a file
+------------------------------------------------------------------------
+r70 | c3tsafat | 2014-06-26 23:48:27 -0400 (Thu, 26 Jun 2014) | 1 line
+
+Sprint for june26th
+------------------------------------------------------------------------
+r69 | c3tsafat | 2014-06-26 23:46:14 -0400 (Thu, 26 Jun 2014) | 1 line
+
+Made changes to the cp method, still not sure
+------------------------------------------------------------------------
+r68 | g3dakouz | 2014-06-26 23:44:23 -0400 (Thu, 26 Jun 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r67 | c3chownl | 2014-06-26 23:40:01 -0400 (Thu, 26 Jun 2014) | 1 line
+
+changed and if to else
+------------------------------------------------------------------------
+r66 | c3chownl | 2014-06-26 23:35:48 -0400 (Thu, 26 Jun 2014) | 2 lines
+
+had to re-arrange mv to ensure that it worked, added a few comments as well 
+
+------------------------------------------------------------------------
+r65 | c3tsafat | 2014-06-26 23:22:08 -0400 (Thu, 26 Jun 2014) | 1 line
+
+Rough idea of cp method
+------------------------------------------------------------------------
+r64 | c3chownl | 2014-06-26 23:19:37 -0400 (Thu, 26 Jun 2014) | 1 line
+
+I keep having issues committing 
+------------------------------------------------------------------------
+r63 | c3chownl | 2014-06-26 14:53:26 -0400 (Thu, 26 Jun 2014) | 2 lines
+
+added a third sprint! 
+
+------------------------------------------------------------------------
+r62 | c3chownl | 2014-06-26 14:28:44 -0400 (Thu, 26 Jun 2014) | 2 lines
+
+changed mv in fileMovement 
+
+------------------------------------------------------------------------
+r61 | c3chownl | 2014-06-25 23:24:52 -0400 (Wed, 25 Jun 2014) | 2 lines
+
+fixed second error in Directory 
+
+------------------------------------------------------------------------
+r60 | c3chownl | 2014-06-25 23:23:15 -0400 (Wed, 25 Jun 2014) | 2 lines
+
+fixed error in Directory 
+
+------------------------------------------------------------------------
+r59 | c3chownl | 2014-06-25 23:21:31 -0400 (Wed, 25 Jun 2014) | 2 lines
+
+worked on moveFiles 
+
+------------------------------------------------------------------------
+r58 | c4paprak | 2014-06-25 01:53:10 -0400 (Wed, 25 Jun 2014) | 1 line
+
+Merged Directory
+------------------------------------------------------------------------
+r57 | c3chownl | 2014-06-25 01:24:53 -0400 (Wed, 25 Jun 2014) | 2 lines
+
+worked with workingDirectory for it to make a list. 
+
+------------------------------------------------------------------------
+r56 | c4paprak | 2014-06-24 23:17:08 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Starting to create a recursive function to copy Directories
+------------------------------------------------------------------------
+r55 | g3dakouz | 2014-06-24 23:16:31 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Created Input class and made Scanner for JShell actually take in something.
+------------------------------------------------------------------------
+r54 | c3chownl | 2014-06-24 22:21:08 -0400 (Tue, 24 Jun 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r53 | c4paprak | 2014-06-24 21:29:36 -0400 (Tue, 24 Jun 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r52 | c4paprak | 2014-06-24 21:05:44 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Deleted FileEditing CRC Card
+------------------------------------------------------------------------
+r51 | c3tsafat | 2014-06-24 16:54:44 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Sprint2June24
+------------------------------------------------------------------------
+r50 | c3tsafat | 2014-06-24 16:48:24 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Working on cp method. A little confused about what to pass in, trying to make mv more efficient by reusing the code in cp
+------------------------------------------------------------------------
+r49 | c3chownl | 2014-06-24 15:31:48 -0400 (Tue, 24 Jun 2014) | 2 lines
+
+started working on fileMovement
+
+------------------------------------------------------------------------
+r48 | c3chownl | 2014-06-24 13:54:04 -0400 (Tue, 24 Jun 2014) | 1 line
+
+modified deleteFile() 
+------------------------------------------------------------------------
+r47 | g3dakouz | 2014-06-24 10:43:15 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Committed new ScrumMeeting for June24.
+------------------------------------------------------------------------
+r46 | g3dakouz | 2014-06-24 10:40:29 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Created cat, echo > OUTFILE and echo >> OUTFILE but contains errors due to a few things we need to create.
+------------------------------------------------------------------------
+r45 | g3dakouz | 2014-06-24 10:33:01 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Added fileNameToObject method to resolves a file name to its respective File object within a directory.
+------------------------------------------------------------------------
+r44 | g3dakouz | 2014-06-24 10:24:44 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Created fileInDirectory method to check if a particular file is in the working directory by searching its name.
+------------------------------------------------------------------------
+r43 | g3dakouz | 2014-06-24 10:12:15 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Created AllCommands class.
+------------------------------------------------------------------------
+r42 | g3dakouz | 2014-06-24 10:07:12 -0400 (Tue, 24 Jun 2014) | 2 lines
+
+Updated Sprint2Backlog to properly reflect project state
+
+------------------------------------------------------------------------
+r41 | c4paprak | 2014-06-24 00:42:43 -0400 (Tue, 24 Jun 2014) | 1 line
+
+Added Sprint2 June 23
+------------------------------------------------------------------------
+r40 | c4paprak | 2014-06-23 17:32:24 -0400 (Mon, 23 Jun 2014) | 1 line
+
+Sprint2Backlog
+------------------------------------------------------------------------
+r39 | c4paprak | 2014-06-22 23:11:15 -0400 (Sun, 22 Jun 2014) | 1 line
+
+Fixed spacing that was messed up last time because I was using notepad.
+------------------------------------------------------------------------
+r38 | g3dakouz | 2014-06-21 13:30:42 -0400 (Sat, 21 Jun 2014) | 1 line
+
+Committed June21 Scrum meeting
+------------------------------------------------------------------------
+r37 | g3dakouz | 2014-06-21 13:29:06 -0400 (Sat, 21 Jun 2014) | 1 line
+
+Restructured Directory(String, Directory) constructor method.
+------------------------------------------------------------------------
+r36 | c4paprak | 2014-06-20 07:26:07 -0400 (Fri, 20 Jun 2014) | 1 line
+
+Added second Scrum Meeting
+------------------------------------------------------------------------
+r35 | c3chownl | 2014-06-19 15:10:34 -0400 (Thu, 19 Jun 2014) | 1 line
+
+updated dailysprint for june 19th will update tomorrow.
+------------------------------------------------------------------------
+r34 | c3tsafat | 2014-06-19 15:08:34 -0400 (Thu, 19 Jun 2014) | 1 line
+
+Forgot to commit this before my code.
+------------------------------------------------------------------------
+r33 | c3chownl | 2014-06-19 15:06:21 -0400 (Thu, 19 Jun 2014) | 2 lines
+
+fixed some typos in code for method deleteFile 
+
+------------------------------------------------------------------------
+r32 | c3chownl | 2014-06-19 15:02:09 -0400 (Thu, 19 Jun 2014) | 3 lines
+
+finished method alteringFiles, and fixed type on delete. 
+
+
+------------------------------------------------------------------------
+r31 | c3tsafat | 2014-06-19 15:00:34 -0400 (Thu, 19 Jun 2014) | 1 line
+
+Created methods in directory to delete files and to delete directories. Also made a method in File.java that deletes the file. Not entirely sure if both are necessary.
+------------------------------------------------------------------------
+r30 | c4paprak | 2014-06-19 14:25:04 -0400 (Thu, 19 Jun 2014) | 1 line
+
+Changed error with setEmptyFileIndex
+------------------------------------------------------------------------
+r29 | c4paprak | 2014-06-18 18:13:26 -0400 (Wed, 18 Jun 2014) | 3 lines
+
+Added the File constructors for adding new files, and a newFile method in the Directory class so that Directories can keep track of new files.
+
+Also added a small test on JShell for this.
+------------------------------------------------------------------------
+r28 | c4paprak | 2014-06-18 14:59:56 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Updated Sprint1 Scrum meeting-June 18th
+------------------------------------------------------------------------
+r27 | c4paprak | 2014-06-18 14:51:50 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Cleaned up findDirectory method, should be done!
+------------------------------------------------------------------------
+r26 | c4paprak | 2014-06-18 14:46:18 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Fixed findDirectory method, works now - need to just clean it up since it has print statements etc
+------------------------------------------------------------------------
+r25 | c4paprak | 2014-06-18 14:45:57 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Fixed findDirectory method, works now - need to just clean it up since it has print statements etc
+------------------------------------------------------------------------
+r24 | c4paprak | 2014-06-18 14:05:41 -0400 (Wed, 18 Jun 2014) | 1 line
+
+committing
+------------------------------------------------------------------------
+r23 | c4paprak | 2014-06-18 13:39:28 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Added the findDirectory method - need to still test it to make sure it actually works!
+------------------------------------------------------------------------
+r22 | g3dakouz | 2014-06-18 12:13:07 -0400 (Wed, 18 Jun 2014) | 2 lines
+
+Created file test case in JShell.
+
+------------------------------------------------------------------------
+r21 | g3dakouz | 2014-06-18 12:10:09 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Changed File constructor.
+------------------------------------------------------------------------
+r20 | g3dakouz | 2014-06-18 12:07:07 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Created File class properties and created method stubs to filled.
+------------------------------------------------------------------------
+r19 | g3dakouz | 2014-06-18 11:47:22 -0400 (Wed, 18 Jun 2014) | 1 line
+
+
+------------------------------------------------------------------------
+r18 | c4paprak | 2014-06-18 11:46:40 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Updated CRC cards to the ones that Julianna & Daniil submitted, as agreed upon by the group. Once we receive feedback on Assignment1, these will likely be modified to account for this.
+------------------------------------------------------------------------
+r17 | c4paprak | 2014-06-18 11:44:07 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Updated responsibilities on Sprint Backlog
+------------------------------------------------------------------------
+r16 | g3dakouz | 2014-06-18 11:43:47 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Created Directory.java and stub File.java. Directory.java should function appropriately and has included some test cases in JShell.java to get you started on working with the class and its methods.
+------------------------------------------------------------------------
+r15 | c4paprak | 2014-06-18 11:42:46 -0400 (Wed, 18 Jun 2014) | 1 line
+
+Added the first sprint backlog that we agreed upon as a group
+------------------------------------------------------------------------
+r14 | c4paprak | 2014-06-17 22:02:45 -0400 (Tue, 17 Jun 2014) | 1 line
+
+Created a product backlog with the team
+------------------------------------------------------------------------
+r13 | c4paprak | 2014-06-16 17:44:03 -0400 (Mon, 16 Jun 2014) | 1 line
+
+Added to my name to the Honor Code (Julianna)
+------------------------------------------------------------------------
+r12 | g3dakouz | 2014-06-16 16:35:42 -0400 (Mon, 16 Jun 2014) | 1 line
+
+Completed my portion of the Honour Code.
+------------------------------------------------------------------------
+r11 | c3tsafat | 2014-06-16 14:40:27 -0400 (Mon, 16 Jun 2014) | 1 line
+
+Added myself (Jacob) to assignment honor code
+------------------------------------------------------------------------
+r10 | attarwal | 2014-06-16 14:26:38 -0400 (Mon, 16 Jun 2014) | 1 line
+
+deleting the unwanted test folder
+------------------------------------------------------------------------
+r9 | c3chownl | 2014-06-16 14:20:00 -0400 (Mon, 16 Jun 2014) | 1 line
+
+Added Lindsay Chown to the honor code
+------------------------------------------------------------------------
+r8 | attarwal | 2014-06-15 19:23:18 -0400 (Sun, 15 Jun 2014) | 1 line
+
+Assignment2A template
+------------------------------------------------------------------------
+r7 | attarwal | 2014-06-15 19:23:17 -0400 (Sun, 15 Jun 2014) | 1 line
+
+Assignment2A template
+------------------------------------------------------------------------
+r6 | attarwal | 2014-06-15 19:23:16 -0400 (Sun, 15 Jun 2014) | 1 line
+
+Assignment2A template
+------------------------------------------------------------------------
+r5 | attarwal | 2014-06-15 19:23:15 -0400 (Sun, 15 Jun 2014) | 1 line
+
+Assignment2A template
+------------------------------------------------------------------------
+r4 | attarwal | 2014-06-15 19:23:14 -0400 (Sun, 15 Jun 2014) | 1 line
+
+Assignment2A template
+------------------------------------------------------------------------
+r3 | attarwal | 2014-06-15 19:23:13 -0400 (Sun, 15 Jun 2014) | 1 line
+
+Assignment2A template
+------------------------------------------------------------------------
+r2 | attarwal | 2014-06-15 19:23:12 -0400 (Sun, 15 Jun 2014) | 1 line
+
+Assignment2A template
+------------------------------------------------------------------------
+r1 | markus | 2014-06-15 17:12:30 -0400 (Sun, 15 Jun 2014) | 1 line
+
+
+------------------------------------------------------------------------
+
+
+
+Part 3) +++Work Distribution of Team Members+++
++++ON ALL SOURCE FILES+++
+  16 attarwal
+ 469 c3chownl
+  38 c3tsafat
+ 923 c4paprak
+ 670 g3dakouz
++++ON CRC CARDS+++
+   9 attarwal
+  91 c4paprak
++++ON DAILYSCRUMMEETINGS+++
+  35 attarwal
+  80 c3tsafat
+  75 c4paprak
+  79 g3dakouz
++++ON PRODUCT BACKLOG +++
+   9 attarwal
+  67 c4paprak
++++ON SPRINTS+++
+  69 attarwal
+38969
+Part 4) SVN Commits
+
+
+On Sprints
+   1  attarwal 
+   2  c3tsafat 
+   4  c4paprak 
+   1  g3dakouz 
+
+
+On CRC Cards
+   1  attarwal 
+   1  c3chownl 
+   3  c4paprak 
+
+
+On DailyScrumMeetings
+   1  attarwal 
+   7  c3chownl 
+   9  c3tsafat 
+   8  c4paprak 
+  10  g3dakouz 
+
+
+On ProductBacklog
+   1  attarwal 
+   1  c4paprak 
+
+
+On source
+   1  attarwal 
+  39  c3chownl 
+  17  c3tsafat 
+  90  c4paprak 
+  52  g3dakouz 

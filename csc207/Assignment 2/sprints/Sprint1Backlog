@@ -1,0 +1,47 @@
+//Sprint 1 Backlog.
+
+June 18 to June 21
+
+
+
+Product Backlog items to be implemented:
+
+a) Create a directory system that creates, manages and keeps track of directories and the files within them
+
+b) Create a file system that can create and alter files
+
+
+Specific tasks to be accomplished:
+
+a-1. (Directory) Create a directory object that has properties name, parent, a list of all child directories, and a list of all files within it -7 hours
+
+a-2. (Directory) Create methods to create child directories -4 hours
+
+a-3. (Directory) Create method to search for directories and files through the directory system -5 hours
+
+a-4. (Directory) Create method to keep track of the current working directory -6 hours
+
+
+b-1. (File) Create a file object that has properties name, contents and directory -- 4 hours
+
+b-2. (File) Create a method to create new files -- 3 hours
+
+b-3. (File) Create a method that can alter file contents -- 2 hours
+
+b-4. (File) Create a method that can delete files -- 1 hours
+
+
+
+These tasks are assigned as follows:
+
+User: Daniil Kouzentsov
+Tasks: a-1, b-1
+
+User: Julianna Paprakis
+Tasks: a-4, b-2
+
+User: Lindsay Chown
+Tasks: a-3, b-3
+
+User: Jacob Tsafatinos
+Tasks: a-2, b-4

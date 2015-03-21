@@ -1,0 +1,11 @@
+What did I do last time?
+	- Completed ls -R command implementation
+	- Fixed mistakes on assignment2A
+	- Improved on cat, echo, pwd, and man commands for error checking
+
+What do I plan to do now?
+	- Fix up ls to be compliant with JUnit testing
+	- Implement grep command
+
+Am I blocked on anything?
+	- No, should be able to go ahead!

@@ -1,0 +1,12 @@
+a) What did I work on last time? 
+	-did most of the JUnit testing for the project
+	-fixed mv and cp so they work
+	-fixed mkdir since there was an error creating double directories
+	-fixed part of the print class so that it properly returns output
+	
+b) What do I plan to work on now?  
+	-figure out how to get mv and cp to create new files if the second file in the command argument does not currently exist
+	-check all possible erroneous inputs for all commands and ensure we catch them all
+	
+c) Am I blocked on anything?  
+	-the checkPath method was broken earlier today - not sure if it got fixed

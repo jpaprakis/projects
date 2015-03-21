@@ -1,0 +1,22 @@
+This one was the one I had to delete because of computer problems 
+
+a) What did I work on last time? 
+-I worked on the mv method. and finished it 
+
+
+b) What do I plan to work on now?  
+-work on switching all the coding regarding Arrays to arraylist 
+-change cp method to do the same (work with arraylist)
+
+c) Am I blocked on anything?  
+-Initially when switching the mv and cp idea to polymorphism, for some reason my brain wasn't 
+understanding the idea. I felt that the two methods should be related, so I though that cp and mv 
+would be the similar. What I had to understand (with the help of Juli) Is the idea of the methods mv and cp 
+taking in type FileSystem (which could be rather a type File or Directory). Essentially mv and cp are 
+implemented differently, and they need to be able to work with both directories and files.
+That is why polymorphism helps. 
+There is also the idea of trees. I understand why we are designing the FileSystem in a tree format. 
+I just need to be refreshed with the whole idea of when to call parent.children.  or just children. 
+What exactly we are calling, and I think once we start fully implementing our test cases it will 
+be clearer!
+

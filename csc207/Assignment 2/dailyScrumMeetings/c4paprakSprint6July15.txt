@@ -1,0 +1,9 @@
+a) What did I work on last time? 
+	-Finished A1
+
+b) What do I plan to work on now?  
+	-re-creating the mv and cp commands as separate classes to fit with the new structure
+
+c) Am I blocked on anything?  
+	-we restructured everything so I will need to get used to the new structure
+	-I am going away this weekend for a wedding and will have no access to a computer to work on this assignment.

@@ -1,0 +1,12 @@
+Class name: Directory
+Parent class (if any): None
+Subclasses (if any): None
+
+Responsibilities:
+*Keeps track of the current working directory
+*Keeps track of files in the current directory
+*Creates directories (mkdir)
+*Changes directories (cd)
+
+Collaborators:
+File, Print, Session

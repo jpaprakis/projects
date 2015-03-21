@@ -1,0 +1,14 @@
+a) What did I work on last time? 
+	-Created recursive method for copying directories
+	-added input parsing
+	-added input checking
+	-had a demo meeting and figured out what our next steps are 
+		-we will need to create a FileSystem class that File and Directory will be subclasses of. We will need to use Polymorphism for move and copy commands.
+	
+b) What do I plan to work on now?  
+	-Add the fileMovement class so that it works with file and directory classes
+	-work on input since parsing is broken
+	
+c) Am I blocked on anything?  
+	-We are still having some problems with the computers - the code is broken on some computers but runs on others, not sure why.
+	-We need to re-work our classes, shouldn't be a big problem but taking away from us working on the rest of the functionality.

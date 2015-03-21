@@ -1,0 +1,11 @@
+What did I do last time?
+	- Created several methods for Input class
+	- Created several methods in AllCommands class
+
+What do I plan to do now?
+	- Reformatted parsing of paths
+	- Completed mkdir command
+
+Am I blocked on anything?
+	- Complete cd command implementation
+	- Work with team members to complete other commands

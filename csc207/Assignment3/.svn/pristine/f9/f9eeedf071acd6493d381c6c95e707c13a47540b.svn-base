@@ -1,0 +1,8 @@
+package driver;
+
+public interface Contributor {
+	
+	public abstract StringBuilder getName (); 
+
+	
+}

@@ -1,0 +1,14 @@
+Class name: File
+Parent class (if any): None
+Subclasses (if any): None
+
+Responsibilities:
+*Contains all combinations of file commands to fulfill all command needs
+*Creates a new file (mv)
+*Deletes a file if specified file exists (mv)
+*Scans/reads contents of files (Includes openning files) (echo, cat)
+*Writes specified string to end of file (append) (mv; echo)
+*Removes text from selected file (echo)
+
+Collaborators:
+Directory, Print

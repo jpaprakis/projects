@@ -1,0 +1,11 @@
+What did I do last time?
+	- Finished Assignment2A
+
+What do I plan to do now?
+	- Complete ls -R command implementation
+	- Fix mistakes on assignment2A
+	- Improve on cat, echo, pwd, and man commands for error checking
+	- Work on grep command later
+
+Am I blocked on anything?
+	- No, should be able to go ahead!

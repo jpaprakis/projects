@@ -1,0 +1,40 @@
+//Sprint 6 Backlog.
+
+July 15 to July 19
+
+Product Backlog items to be implemented:
+a) Reformat Assignment 2A structure before actually implementing any new commands. Ensure that all feedback is adhered to once we get feedback.
+
+
+Specific tasks to be accomplished:
+
+a-1. (cd) Create cd class
+
+a-2. (mkdir) Create mkdir class
+
+a-3. (echo) Create echo class
+
+a-4. (cp) Create cp class
+
+a-5. (mv) Create mv class
+
+a-6. (ls) Create ls class
+
+a-7. (man) Create man class
+
+a-8. (cat) Create cat class
+
+ 
+These tasks are assigned as follows:
+
+User: Daniil Kouzentsov
+Tasks: a-3, a-6
+
+User: Julianna Paprakis
+Tasks: a-4, a-5
+
+User: Lindsay Chown
+Tasks: a-7, a-8
+
+User: Jacob Tsafatinos
+Tasks: a-1, a-2

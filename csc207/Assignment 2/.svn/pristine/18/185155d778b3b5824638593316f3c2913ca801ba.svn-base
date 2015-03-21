@@ -1,0 +1,119 @@
+==== A2 phase I marking ====
+
+Group number: 306
+UTORID usernames of members:
+c3tsafat,g3dakouz,c4paprak,c3chownl
+Total deductions: 4
+Grade: B
+
+
+Notes:
+	c3tsafat still seems to have contributed significantly less
+
+==== Java Style ==== 
+
+Warning:
+    Not following the 80character column width limit in three places:
+	driver/File.java : 2 lines
+	test/TestingFile.java : 1 line
+
+
+==== Design ==== [-1.5]
+
+public instance variables instead of setters and getters -.5 
+	public vars Directory.workingDirectory and Directory.root are used directly
+	throughout the project
+	
+not a good breakdown of classes and methods (everything static; no ability
+to, for example, make two shells that coexist; not extensible) -.5
+	public vars Directory.workingDirectory and Directory.root are also declared
+	as static. The main method is designed such that there is no way to have two 
+	coexisting shells (and filesystems)
+	
+long methods exist (more than roughly 30 lines from brace to brace) -.5
+	Some monster methods such as Input.enteredCommand() and
+	Directory.makeDirToRemoveList() exist
+
+==== Javadoc ==== [-1]
+
+A lot of missing javadoc, esp. on classes and vars:
+
+Description	Resource	Path	Location	
+Javadoc: Missing comment for public declaration	Print.java	/306/src/driver	line 12	
+Javadoc: Missing comment for public declaration	File.java	/306/src/driver	line 142	
+Javadoc: Missing comment for public declaration	JShell.java	/306/src/driver	line 38	
+Javadoc: Missing comment for public declaration	JShell.java	/306/src/driver	line 65	
+Javadoc: Missing comment for public declaration	File.java	/306/src/driver	line 133	
+Javadoc: Missing comment for public declaration	File.java	/306/src/driver	line 118	
+Javadoc: Missing comment for public declaration	File.java	/306/src/driver	line 20	
+Javadoc: Missing comment for public declaration	FileMovement.java /306/src/driver	line 12	
+Javadoc: Missing comment for public declaration	Input.java	/306/src/driver	line 22	
+Javadoc: Missing comment for public declaration	FileSystem.java	/306/src/driver line 14	
+Javadoc: Missing comment for public declaration	StackCommands.java /306/src/driver	line 3	
+Javadoc: Missing comment for public declaration	StackCommands.java /306/src/driver	line 5	
+Javadoc: Missing comment for public declaration	StackCommands.java /306/src/driver	line 7	
+Javadoc: Missing comment for public declaration	StackCommands.java /306/src/driver	line 10	
+Javadoc: Missing comment for public declaration	StackCommands.java /306/src/driver	line 16	
+Javadoc: Missing comment for public declaration	Directory.java	/306/src/driver line 23	
+Javadoc: Missing comment for public declaration	Directory.java	/306/src/driver line 24	
+Javadoc: Missing comment for public declaration	Directory.java	/306/src/driver line 19	
+Javadoc: Missing comment for public declaration	AllCommands.java /306/src/driver	line 17	
+
+==== Correctness ==== [-2]
+(mark added by instructor instead of -3 it is now -2)
+
+Grep does not work properly, no bonus.
+	/f2/#get http://www.cs.cmu.edu/~spok/grimmtmp/073.txt
+	/f2/#grep king 073.txt
+	Files which match given regularexpression are: 
+	No items matched the given regular expression.
+	/f2/#man grep
+	No Manual entry grep
+	/f2/#grep "king" 073.txt
+	Files which match given regularexpression are: 
+	No items matched the given regular expression.
+	/f2/#cd /
+	/#grep -R "king" /
+	Files which match given regularexpression are: 
+	No items matched the given regular expression.
+
+Each missing/incomplete feature -1
+
+Failures: 3
+
+Weird behavior when I run ls for a folder:
+	/#ls f1
+	Cannot create a file that is the same name as a directory's sub-directory
+
+Filesystem crashes when I delete a folder:
+	/f1/f3/#pushd /f1
+	/f1/#pwd
+	/f1
+	/f1/#rm -f f3
+	/f1/#ls
+	Exception in thread "main" java.lang.NullPointerException
+		at driver.Input.enteredCommand(Input.java:122)
+		at driver.JShell.main(JShell.java:82)
+
+Crash when I popd a deleted folder:
+	/#mkdir f1 f2 
+	/#mkdir f2/f3
+	/#cd f2/f3
+	/f2/f3/#pwd
+	/f2/f3
+	/f2/f3/#pushd .
+	/f2/f3/#cd ..
+	/f2/#rm -f f3
+	/f2/#cd /
+	/#popd
+	Exception in thread "main" java.lang.NullPointerException
+		at driver.Directory.directoryObjectLocation(Directory.java:243)
+		at driver.Directory.directoryLocation(Directory.java:221)
+		at driver.AllCommands.changeWorkingDirectory(AllCommands.java:75)
+		at driver.StackCommands.Popd(StackCommands.java:18)
+		at driver.Input.enteredCommand(Input.java:269)
+		at driver.JShell.main(JShell.java:82)
+
+
+
+

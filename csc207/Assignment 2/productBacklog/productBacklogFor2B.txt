@@ -1,0 +1,35 @@
+Very High Priority:
+
+Project: 
+Reformat Assignment 2A structure before actually implementing any new commands. Ensure that all feedback is adhered to once we get feedback.
+Estimated Time: 4 days
+
+High Priority:
+
+Project:
+Create skeleton design/framework of new classes for the new commands
+Estimated Time: 1 day
+
+Medium Priority:
+
+Project:
+Program push and pop methods
+Estimated Time: 1 day
+
+Project:
+Program get URL method
+Estimated Time: 1 day
+
+Project:
+Program rm method
+Estimated Time: 1 day
+
+Project:
+Change ls method to include -R support
+Estimated Time: 1 day
+
+Low Priority:
+
+Project:
+Program bonus grep method
+Estimated Time: 1 day

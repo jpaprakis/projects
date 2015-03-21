@@ -1,0 +1,11 @@
+Class name: FileMovement
+Parent class (if any): File
+Subclasses (if any): None
+
+Responsibilities:
+*Moves files to a new specified location (through creating a new file at that location, scanning contents of old file, writing contents to the new file, then deleting the old file)
+*Copies files to a specified location (through creating a new file at that location, scanning contents of old file, writing contents to the new file)
+*Creates files from a specified URL (**Note: How would we do this? do we need to read in the contents then write to a new file, or can we just copy in the file somehow?)
+
+Collaborators:
+Directory (**Note: would this automatically collaborate with directory since it's a superclass of File which collaborates with Directory?), Print, FileEditing

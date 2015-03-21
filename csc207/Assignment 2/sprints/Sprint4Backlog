@@ -1,0 +1,30 @@
+//Sprint 4 Backlog.
+
+July 1 to July 4
+
+
+
+Product Backlog items to be implemented:
+a) Implement as many commands as possible (priorities: mkdir, cd, ls, mv, cp,
+ man)
+
+b) Create jUnit tests for all classes to ensure everything is working as wanted
+
+c) Create error messages for input
+
+d) Meet and discuss code
+
+
+These tasks are assigned as follows:
+
+User: Daniil Kouzentsov
+Tasks: a
+
+User: Julianna Paprakis
+Tasks: b, c
+
+User: Lindsay Chown
+Tasks: a, c
+
+User: Jacob Tsafatinos
+Tasks: a, c

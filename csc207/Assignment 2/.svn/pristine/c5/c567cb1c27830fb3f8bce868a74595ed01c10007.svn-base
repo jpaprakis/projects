@@ -1,0 +1,164 @@
+package test;
+
+import static org.junit.Assert.*;
+import java.util.List;
+import org.junit.*;
+import driver.*;
+
+public class TestingDirectory {
+
+	Directory A;
+	Directory B;
+	Directory C;
+	Directory B1;
+	Directory C1;
+	Directory C2; 
+	Directory C3; 
+	Directory B11;
+	Directory C11;
+	File AFile;
+	File B1_1File;
+	File B1_2File;
+	File C1_1File;
+	File B11_1File;
+
+	@Before
+	public void setUp() {
+		Directory.root = new Directory();
+		A = new Directory("A", Directory.root);
+		B = new Directory("B", Directory.root);
+		C = new Directory("C", Directory.root);
+		B1 = new Directory("B1", B);
+		C1 = new Directory("C1", C);
+		C2 = new Directory("C2", C1);
+		C3 = new Directory("C3", C2);
+		B11 = new Directory("B11", B1);
+		C11 = new Directory("C11", C1);
+		AFile = new File("AFile", A);
+		B1_1File = new File("B1_1File", B1);
+		B1_2File = new File("B1_2File", B1);
+		C1_1File = new File("C1_1File", C1);
+		B11_1File = new File("B11_1File", B11);
+		Directory.root.setWorkingDirectory();
+	}
+
+	@Test
+	public void testCreateDirectory() {
+		Directory D = new Directory("D", Directory.root);
+		assertTrue(D.getName() == "D");
+		assertEquals(D.getParent(), Directory.root);
+		assertTrue(D.getChildren().isEmpty());
+		assertTrue(D.getFiles().isEmpty());
+	}
+
+	@Test
+	public void testDeleteDirectory() {
+		A.deleteFileSystem();
+		assertFalse(Directory.root.fileSystemInDirectory("A"));
+		assertEquals(A.getParent(), null);
+	}
+
+	@Test
+	public void testFileSystemInDirectory() {
+		assertTrue(Directory.workingDirectory.fileSystemInDirectory("A"));
+		assertFalse(Directory.workingDirectory.fileSystemInDirectory("F"));
+		assertTrue(A.fileSystemInDirectory("AFile"));
+		assertFalse(A.fileSystemInDirectory("CFile"));
+	}
+
+	@Test
+	public void testFileSystemNameToObject() {
+		assertEquals(Directory.workingDirectory.fileSystemNameToObject("A"), A);
+		assertEquals(A.fileSystemNameToObject("AFile"), AFile);
+	}
+
+	@Test
+	public void testCopyFirstDirectory() {
+		// Copy the object B and put it in C1
+		C1.copyFirstDirectory(B);
+		assertTrue(C1.fileSystemInDirectory("B"));
+		/*
+		 * To show that the address of B in C1's children is not the same as the
+		 * address of the initial B in the root (they are not pointing to the
+		 * same object
+		 */
+		Directory oldDir = (Directory) Directory.root
+				.fileSystemNameToObject("B");
+		Directory newDir = (Directory) C1.fileSystemNameToObject("B");
+		assertTrue(newDir != oldDir);
+		assertTrue(newDir.getChildren().isEmpty());
+		assertFalse(oldDir.getChildren().isEmpty());
+		assertTrue(newDir.getFiles().isEmpty());
+		assertTrue(oldDir.getFiles().isEmpty());
+	}
+
+	@Test
+	public void testCloneDirectory() {
+		// Copy the object B along with all of its children and put it in C1
+		C1.copyFirstDirectory(B).cloneDirectory(B);
+		assertTrue(C1.fileSystemInDirectory("B"));
+		/*
+		 * To show that the address of B in C1's children is not the same as the
+		 * address of the initial B in the root (they are not pointing to the
+		 * same object
+		 */
+		Directory oldDir = (Directory) Directory.root
+				.fileSystemNameToObject("B");
+		Directory newDir = (Directory) C1.fileSystemNameToObject("B");
+		assertTrue(newDir != oldDir);
+		assertEquals(newDir.getName(), oldDir.getName());
+
+		// Check that all the children directories and files were created
+		assertTrue(newDir.fileSystemInDirectory("B1"));
+		Directory newDirChild = (Directory) newDir.fileSystemNameToObject("B1");
+		assertTrue(newDirChild.fileSystemInDirectory("B11"));
+		assertTrue(newDirChild.fileSystemInDirectory("B1_1File"));
+		assertTrue(newDirChild.fileSystemInDirectory("B1_2File"));
+		Directory newDirChildChild = (Directory) newDirChild
+				.fileSystemNameToObject("B11");
+		assertTrue(newDirChildChild.fileSystemInDirectory("B11_1File"));
+
+		// Check that all the old children and directories are still there
+		assertTrue(newDir.getParent().fileSystemInDirectory("C1_1File"));
+		assertTrue(newDir.getParent().fileSystemInDirectory("C11"));
+
+		// Delete the one of the objects from the old directory, make sure
+		// it doesn't get deleted from the new directory
+		Directory oldDirChild = (Directory) oldDir.fileSystemNameToObject("B1");
+		oldDirChild.deleteFileSystem();
+		assertFalse(oldDir.fileSystemInDirectory("B1"));
+		assertTrue(newDir.fileSystemInDirectory("B1"));
+	}
+
+	@Test
+	public void testSetWorkingDirectory() {
+		C.setWorkingDirectory();
+		assertEquals(Directory.workingDirectory, C);
+	}
+
+	@Test
+	public void testDirectoryLocation() {
+
+		String newlist = B11.directoryLocation();
+		System.out.println("new list is " + newlist);
+		assertEquals(B11.directoryLocation(), "/B/B1/B11");
+	}
+
+	@Test
+	public void testDirectoryObjectLocation() {
+		List<Directory> objectLocationList = B11.directoryObjectLocation();
+		assertEquals(objectLocationList.get(0), B);
+		assertEquals(objectLocationList.get(1), B1);
+		assertEquals(objectLocationList.get(2), B11);
+	}
+	@Test 
+	public void testremoveDir() {
+	C.setWorkingDirectory();
+	C.removeDir(C2);
+	assertFalse(C.fileSystemInDirectory("C2"));
+	
+//	
+
+	}
+}
+

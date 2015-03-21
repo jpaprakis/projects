@@ -1,0 +1,8 @@
+a) What did I work on last time? 
+	- Reworked mkdir and cd but we got rid of it in the end.
+
+b) What do I plan to work on now?  
+	-Create a new class called stackcommands which will contain pushd and popd
+
+c) Am I blocked on anything?  
+    -Everything seems okay.

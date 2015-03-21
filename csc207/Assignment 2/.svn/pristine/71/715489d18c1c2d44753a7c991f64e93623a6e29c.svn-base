@@ -1,0 +1,12 @@
+What did I do last time?
+	- Created fileInDirectory method in Directory
+	- Created fileNameToObject method in Directory
+	- Created several method outlines for echo >, echo >>, and cat in AllCommands
+
+What do I plan to do now?
+	- Work on Input class
+	- Work on JShell class
+
+Am I blocked on anything?
+	- Collaborate JShell and Input
+	- Collaborate Input with several other methods from all other classes

@@ -1,0 +1,85 @@
+package driver;
+// **********************************************************
+// Assignment3:
+// CDF user_name: c4paprak
+//
+// Author: Julianna Paprakis
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// *********************************************************
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.URL;
+
+public class MyParser {
+
+  /**
+   * @param args
+   */
+  public static void main(String[] args) {
+    splitAndRun(args);
+  }
+
+
+  /*
+   * This is a debug/helper method to help you get started. Once you understand
+   * how this method is being used, you are free to refactor it, modify it, or
+   * change it, or remove it entirely in any way you like.
+   */
+  private static void splitAndRun(String[] args) {
+    try {
+      System.out.println("DEBUG: URLS are " + args[0]);
+      String URLS[] = args[0].split(",");
+      for (String url : URLS) {
+      	Author newAuthor = new Author(url);
+      }
+      Author.removeDuplicatesAndSort();
+      Output.addCoAuthorContents();
+      try {
+          System.out.println("DEBUG: FileName is " + args[1]);
+          PrintWriter writer = new PrintWriter(args[1], "UTF-8");
+          writer.print(Output.getAllContents());
+          writer.close();
+        }
+        catch (Exception noFileException) {
+        	System.out.print(Output.getAllContents());
+        }
+    }    
+    catch (Exception noArgsException) {
+        System.out.println("Please enter arguments to continue");
+    }
+
+ }
+
+
+  public String getHTML(String urlString) throws Exception {
+    // create object to store html source text as it is being collected
+    StringBuilder html = new StringBuilder();
+    // open connection to given url
+    URL url;
+    //Checks if it is an actual URL, if not assumes it's coming from a file
+    if (urlString.substring(0, 4).equals("http")) {
+    	url = new URL(urlString);
+    }
+    else{
+    	url = new File(urlString).toURI().toURL();
+    }
+    // create BufferedReader to buffer the given url's HTML source
+    BufferedReader htmlbr =
+        new BufferedReader(new InputStreamReader(url.openStream()));
+    String line;
+    // read each line of HTML code and store in StringBuilder
+    while ((line = htmlbr.readLine()) != null) {
+      html.append(line);
+    }
+    htmlbr.close();
+    // convert StringBuilder into a String and return it
+    return html.toString();
+  }
+
+}

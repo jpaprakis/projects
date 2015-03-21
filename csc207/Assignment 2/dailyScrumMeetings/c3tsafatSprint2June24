@@ -1,0 +1,13 @@
+a) What did I work on last time? 
+	-Worked on methods deleteFile and deletedirectory
+
+b) What do I plan to work on now?  
+	-Work on method to copy files from one file to another.
+
+c) Am I blocked on anything?  
+	-My copy method should be able to do everything mv does except delete the
+	 file, so I need to talk with my partners to see if it's okay to change mv.
+	 Also just ran out of time to work on it. I think the foundation for cp is
+	 good but I need to figure out how to have it work with copying to a new
+	 directory as well. Hopefully me and Lindsay can get together tomorrow to
+	 finish it since the code should be really similar for both mv and cp. 

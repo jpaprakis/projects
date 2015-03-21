@@ -1,0 +1,12 @@
+What did I do last time?
+	- Restructured some directory methods
+	- Added comments to several functions
+
+What do I plan to do now?
+	- Created fileInDirectory method in Directory
+	- Created fileNameToObject method in Directory
+	- Created several method outlines for echo >, echo >>, and cat in AllCommands
+
+Am I blocked on anything?
+	- I need a way to keep track of the working directory and use it in AllCommands
+	- Need to work with Julianna today to create some ls commands

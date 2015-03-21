@@ -1,0 +1,67 @@
+package driver;
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class Author implements Contributor {
+	
+	private StringBuilder name;
+	private StringBuilder numCitations;
+	private StringBuilder numi10Citations;
+	private HashSet<String> pubs;
+	private int numPaperCitations;
+	private int NumCoAuthors;
+	private StringBuilder CoAuthors;
+
+	private final String regExName = "<span id=\"cit-name-display\" "
+            + "class=\"cit-in-place-nohover\">(.*?)</span>";
+	private final String regExNumCitations = ">Citations</a></td><td class=\""
+			+ "cit-borderleft cit-data\">(\\d+)</td>";
+	
+	private final String regExNumi10Citations = "<td class=\"cit-borderleft "
+			+ "cit-data\">(\\d+)</td></tr></tbody></table>";
+	
+	private final String regExPubs = "class=\"cit-dark-large-link\">(.*?)</a>"
+			+ "<br>";
+	
+	private final String regExPaperCitations = "<span id=\"cit-name-display\" "
+            + "class=\"cit-in-place-nohover\">(.*?)</span>";
+	private final String regExNumCoAuthor = "<span id=\"cit-name-display\" "
+            + "class=\"cit-in-place-nohover\">(.*?)</span>";
+	private final String regExNameCoAuthor = "<span id=\"cit-name-display\" "
+            + "class=\"cit-in-place-nohover\">(.*?)</span>";
+	
+	//Constructor sets all attributes of Author by calling extractor
+	public Author(String googleScholarURL) {
+		Extractor authorExtractor = new Extractor(googleScholarURL);
+		this.name = authorExtractor.simpleExtract(regExName);
+		System.out.println("DEBUG: Author name is " + this.name);
+		this.numCitations = authorExtractor.simpleExtract(regExNumCitations);
+		System.out.println("DEBUG: num citations is " + this.numCitations);
+		this.numi10Citations = authorExtractor.simpleExtract(regExNumi10Citations);
+		System.out.println("DEBUG: num i10 citations is " + this.numi10Citations);
+		this.pubs = authorExtractor.setExtract(regExPubs, 3);
+		System.out.println("DEBUG: regex pubs are " + this.pubs);	
+		this.numPaperCitations = countCitations(authorExtractor.setExtract(regExPaperCitations, 5));
+		System.out.println("DEBUG: num papers are " + this.numPaperCitations);	
+		
+		
+	}
+	
+	public StringBuilder getName() {
+		return this.name;
+	}
+	
+	
+	public static int countCitations(HashSet<String> citationSet) {
+		Iterator iterator = citationSet.iterator();
+		int sumOfCitations = 0;
+		if (iterator.hasNext()) {
+			int toInt = Integer.parseInt((String)(iterator.next()));
+			sumOfCitations += toInt;
+		}
+		return sumOfCitations;
+	}
+}
+
+

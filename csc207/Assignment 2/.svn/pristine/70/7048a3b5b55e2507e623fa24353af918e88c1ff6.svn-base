@@ -1,0 +1,12 @@
+Class name: Print
+Parent class (if any): Session
+Subclasses (if any): None
+
+Responsibilities:
+*Prints the name of files in the current directory (ls)
+*Prints the address of the current working directory (pwd)
+*Displays contents of a specified file (cp)
+*Displays error messages when unexpected input is entered
+
+Collaborators:
+Directory, FileCommands

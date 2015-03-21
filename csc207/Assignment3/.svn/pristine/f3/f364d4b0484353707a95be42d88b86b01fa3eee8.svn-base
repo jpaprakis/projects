@@ -1,0 +1,12 @@
+package driver;
+
+public class CoAuthor implements Contributor {
+	
+	private StringBuilder Name;
+	
+	public StringBuilder getName() {
+		return this.Name;
+	}
+	
+
+}

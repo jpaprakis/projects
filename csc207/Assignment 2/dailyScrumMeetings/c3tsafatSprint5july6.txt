@@ -1,0 +1,10 @@
+a) What did I work on last time? 
+	- Work on checking all input is valid and creating exceptions if not.
+
+b) What do I plan to work on now?  
+	-Add testing for exceptions
+	-Check the style of our code to make sure everything is consistent
+
+c) Am I blocked on anything?  
+    -I don't entirely know how to test the exceptions, I tried for a while
+    but it's hard for me to grasp

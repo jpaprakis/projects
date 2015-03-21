@@ -1,0 +1,42 @@
+This assignment is marked by Michales
+Michalis Famelis <mfamelis@gmail.com>
+==== A2 phase I marking ====
+
+Group number: 306
+UTORID usernames of members:
+c3tsafat,g3dakouz,c4paprak,c3chownl
+Total deductions: 5
+Grade: B-
+
+Notes:
+	c3tsafat wrote very little code, but was active in other tasks (backlogs
+	etc)
+		
+==== Correctness ==== [-5]
+
+Each missing/incomplete feature -1
+	Number of failed tests: 5
+
+Failed tests:
+
+/#cd f1
+/f1/#pwd
+/f1/#
+
+/f2/#echo "hello world"
+Special characters " are not allowed.
+/f2/#echo 'hello world'
+Special characters ' are not allowed.
+/f2/#echo hello world
+/f2/#
+
+(Because echo fails, 2 tests requiring me to work
+with text files (i.e., cat and redirection) also fail.
+
+/#man echo
+/#man cat
+/#
+
+
+
+

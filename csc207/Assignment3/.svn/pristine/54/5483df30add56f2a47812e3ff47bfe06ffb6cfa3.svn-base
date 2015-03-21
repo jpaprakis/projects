@@ -1,0 +1,10 @@
+package driver;
+
+public interface Contributor {
+	
+	public String getName (); 
+	
+	public void setName (String Name); 
+
+	
+}

@@ -1,0 +1,10 @@
+Class name: FileCommands
+Parent class (if any): None
+Subclasses (if any): None
+
+Responsibilities:
+*Processes input commands and parameters and forwards them to the File Class which contains all operations
+*Combines operations from File to produce a successful output corresponding to given commands from the terminal
+
+Collaborators:
+File, Directory

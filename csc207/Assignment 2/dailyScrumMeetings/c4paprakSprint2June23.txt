@@ -1,0 +1,11 @@
+a) What did I work on last time? 
+	-Wrote out a rough draft of our Sprint2 tasks 
+	-Wrote some tests for the changing file contents method
+	-Identified errors in the File deletion methods
+	
+b) What do I plan to work on now?  
+	-Our group will get together tomorrow after class to finalize the design of the classes and of Sprint2, with coding happening tomorrow and Wednesday 	
+	-I will complete my part for Sprint 2	
+	
+c) Am I blocked on anything?  
+	-We are unsure of how to design our classes now, and we need to come to a consensus before beginning the coding of Sprint2, which we will do tomorrow.

@@ -1,0 +1,14 @@
+What did I do last time?
+	- Reformatted parsing of paths
+	- Completed mkdir command
+
+What do I plan to do now?
+	- Completed echo STRING [> OUTFILE] command
+	- Completed echo STRING >> OUTFILE command
+	- Completed cat command
+	- Completed ls command
+	- Completed cd command
+
+Am I blocked on anything?
+	- Need to implement proper error messages
+	- Need to complete mv, cp, and man commands!

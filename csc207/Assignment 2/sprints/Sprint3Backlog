@@ -1,0 +1,33 @@
+//Sprint 3 Backlog.
+
+June 27 to June 31
+
+
+
+Product Backlog items to be implemented:
+a) Change Arrays to Array lists.
+
+b) Create a filesystem class that file and directory will inherit from.
+
+c) Reformat search method
+
+d) Program methods to move and copy files using polymorphism
+
+e) Fix input parsing
+
+f) Meet and discuss code
+
+
+These tasks are assigned as follows:
+
+User: Daniil Kouzentsov
+Tasks: c, f
+
+User: Julianna Paprakis
+Tasks: b, f
+
+User: Lindsay Chown
+Tasks: a, f
+
+User: Jacob Tsafatinos
+Tasks: d, help with (a), f

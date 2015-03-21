@@ -1,0 +1,67 @@
+Very High Priority:
+
+Project: 
+Create a directory system that creates, manages and keeps track of directories and the files within them
+Estimated Time: 2 days
+
+Project:
+Create a file system that can create and alter files
+Estimated Time: 2 days
+
+
+High Priority:
+
+Project:
+Program methods to delete and create files
+Estimated Time: 1 day
+
+Project:
+Program a method to alter file contents
+Estimated Time: 1 day
+
+Project:
+Program methods to move and copy files
+Estimated Time: 1 day
+
+
+Medium Priority:
+
+Project:
+Program a method to interpret user input and combine methods to produce appropriate commands
+Estimated Time: 1 day
+
+Project:
+Program methods to accept user inputs and check if it is valid
+Estimated Time: 1 day
+
+Project:
+Program methods to print the outputs of specified arguments
+Estimated Time: 1 day
+
+Project:
+Program methods to print error messages
+Estimated Time: 1 day
+
+Project:
+Program all appropriate commands and call their respective methods
+Estimated Time: 1 day
+
+
+Low Priority:
+
+Project:
+Program a main class, JShell, that combines the functionality of all other methods
+Estimated Time: 1 day
+
+
+Project:
+Program a method that exits the program
+Estimated Time: 1 day
+
+Project:
+Create documentation for every method that can be printed to the screen
+Estimated Time: 1 day
+
+Project:
+Create JUnit test cases and test the program to ensure it is user-ready
+Estimated Time: 3 days

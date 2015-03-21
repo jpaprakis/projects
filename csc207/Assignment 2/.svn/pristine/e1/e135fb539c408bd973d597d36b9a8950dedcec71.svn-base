@@ -1,0 +1,14 @@
+a) What did I work on last time? 
+	-reworked File and Directory classes to collaborate with a FileSystem Class
+	-Edited some methods and fixed some bugs
+	-Started jUnit testing
+	
+b) What do I plan to work on now?  
+	-jUnit testing a priority - want to make sure everything works
+	-error messages for erroneous input
+	
+	
+c) Am I blocked on anything?  
+	-Having difficulties all meeting as a group due to our schedules - 
+	hopefully we will all be able to meet on the 5th to go over everything one
+	last time and ensure we have met all specifications.

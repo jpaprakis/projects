@@ -1,0 +1,10 @@
+Class name: Input
+Parent class (if any): Session
+Subclasses (if any): None
+
+Responsibilities:
+*Takes input from the user
+*Checks if input is valid. If so, calls the appropriate class and method. If not, calls the Print class and displays an error message
+
+Collaborators:
+FileCommands, Print

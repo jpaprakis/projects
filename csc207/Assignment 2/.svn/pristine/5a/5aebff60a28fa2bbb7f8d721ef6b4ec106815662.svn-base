@@ -1,0 +1,644 @@
+/**
+ * Input handles the interaction between commands entered through JShell, 
+ * the paths that are given through these commands, and how they call all 
+ * the necessary methods to complete their respective tasks.
+ * 
+ * errorMessage is the generic error message displayed when an error is raised
+ * inBounds indicates how many arguments are in the given command
+ * commandParts is the list of commands and arguments, split by whitespace
+ * illegalChars is the string of all illegal characters
+ * 
+ * @author c3chownl, c4paprak, c3tsafat, g3dakouz
+ *
+ */
+
+package driver;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Input {
+
+	private static int inBounds;
+	private static List<String> commandParts;
+	private static String illegalChars = "[!@$&*()?:\"<>\'`|={}\\,;]";
+	private static boolean redirect = false;
+
+	/**
+	 * This handles all commands entered by the user and determines what kind 
+	 * of command it is and calls the appropriate method combinations that make
+	 * up that command. Will throw errors if an erroneous amount of arguments 
+	 *or incorrect arguments are given.
+	 * 
+	 * @param commandName
+	 *            the scanned line of input given typically by JShell
+	 * @return
+	 */
+	public static Object enteredCommand(String commandName) {
+		commandParts = Arrays.asList(commandName.trim().split("\\s+"));
+		inBounds = 0;
+		// Determines the amount of commands entered
+
+		for (int index = 0; index < commandParts.size(); index++) {
+			inBounds++;
+		}
+		
+		if (commandParts.get(0).isEmpty()) {
+			AllCommands.raiseError("Please enter a command");
+		}
+		
+		// The following commands don't necessarily require any arguments.
+		if (commandParts.get(0).equals("pwd")) {
+			//check for a redirect
+			if (commandParts.size() >= 3) {
+
+				if (redirectInput(
+						commandParts.get(1), Arrays.asList(3), inBounds)) {
+				//can only accept in form of "pwd >> outfile"
+				File.fileRedirection(Print.printWorkingDirectory(), 
+						commandParts.get(commandParts.size()-1),
+						commandParts.get(commandParts.size()-2));
+				}
+			}
+			if (inBounds == 1) {
+				System.out.println(Print.printWorkingDirectory());
+			} else {
+				AllCommands.raiseError("Too many arguments: "
+						+ "pwd takes no additional arguments");
+			}
+		}
+
+		else if (commandParts.get(0).equals("man")) {
+			if (commandParts.size() >= 3) {
+				if ((redirectInput(commandParts.get(
+						commandParts.size()-2), Arrays.asList(4), inBounds))) {
+				//can accept:
+				//"man command >> outfile" (don't prompt)
+				//add thing to print to file
+				File.fileRedirection(Print.man(commandParts.get(1)), 
+						commandParts.get(commandParts.size()-1),
+						commandParts.get(commandParts.size()-2));
+				}
+			}
+			
+			else if (inBounds <= 2) {
+				if (commandParts.size() == 1) {
+					System.out.print("What command would you like?");
+				} else {
+					System.out.println(Print.man(commandParts.get(1)));
+				}
+			} else {
+				AllCommands
+						.raiseError("Too many arguments: "
+								+ "man only gives the manual "
+								+ "for one command at a time");
+			}
+			
+		} else if (commandParts.get(0).equals("ls")) {
+			//first check for redirect
+			if (commandParts.size() >= 3) {
+				if ((redirectInput(commandParts.get(
+						commandParts.size()-2), Arrays.asList(
+								3, 4, 5), inBounds))) {
+					//can accept:
+					//"ls >> outfile"
+					//"ls path >> outfile"
+					//"ls -R path >> outfile"
+					//"ls -R >> outfile"
+					//add thing to print to file
+					redirect = true;
+				}
+			}
+			if (inBounds == 1) {
+				System.out.println(Print.printDirContents(
+						Directory.workingDirectory.directoryLocation()));
+			}
+			
+			else if (inBounds == 3 && redirect) {
+				//redirect contents
+			}
+			else if (commandParts.get(1).equals("-r") || 
+					commandParts.get(1).equals("-R")) {
+				if (inBounds == 2 || (inBounds == 4 && redirect)) {
+					//once method gets changed to return, 
+					//differentiate between the two
+					AllCommands.recursivePrintDirContents(
+							Directory.workingDirectory.directoryLocation());
+				}
+				else if (!redirect) {
+					for (String part : commandParts.subList(
+							2, commandParts.size())) {
+							if (checkPath(part, false)) {
+									AllCommands.recursivePrintDirContents(part);
+						}
+					}
+				}
+				//if it is redirect
+				else
+				{
+					for (String part : commandParts.subList(
+							2, commandParts.size()-2)) {
+						if (checkPath(part, false)) {
+							//change this to redirect
+								AllCommands.recursivePrintDirContents(part);
+					}
+				}	
+				}
+			}
+			else if (redirect) {
+				//change this to redirect
+				for (String path : commandParts.subList(1,
+						(commandParts.size()))) {
+					if (checkPath(path, false)) {
+					System.out.println(Print.printDirContents(path));
+					}
+				}
+			}
+			else{
+				for (String path : commandParts.subList(1,
+						(commandParts.size()))) {
+					if (checkPath(path, false)) {
+					System.out.println(Print.printDirContents(path));
+					}
+				}
+			}
+			
+		}
+
+		// The following commands require at least 1 argument
+
+		else if (commandParts.get(0).equals("cat")) {
+			if (inBounds == 1) {
+				AllCommands.raiseError("Missing opperand: "
+						+ "Please specify a file for cat to display");}
+			else if (checkPath(commandParts.get(1), false)) {
+				if (commandParts.size() >= 3) {
+					if ((redirectInput(commandParts.get(
+							commandParts.size()-2),
+							Arrays.asList(4), inBounds))) {
+						//can have: cat file >> outfile
+						//redirect here
+						File.fileRedirection(Print.printFileContents
+								(Input.parsePath(commandParts.get(1))[1]
+										.getName()), 
+								commandParts.get(commandParts.size()-1),
+								commandParts.get(commandParts.size()-2));
+					}
+				else if (inBounds == 2) {
+					System.out.println(Print.printFileContents(Input.parsePath(
+							commandParts.get(1))[1].getName()));
+				}
+				else {
+					AllCommands.raiseError("Too Many arguments: cat only "
+							+ "takes in one file");
+				}
+			}
+		}
+		}
+		
+		else if (commandParts.get(0).equals("pushd")) {
+			if (commandParts.size() >= 3) {
+				if ((redirectInput(commandParts.get(
+						commandParts.size()-2),
+						Arrays.asList(3, 4), inBounds))) {
+					//can have: pushd path >> file
+					redirect = true;
+				}
+			}
+			//allow the function to run even if they try to redirect it
+			if (inBounds == 2 || redirect == true) {
+				//check to make sure the path is valid
+				if (checkPath(commandParts.get(1), false)) {
+				StackCommands.Pushd(parsePath(commandParts.get(1))[1]);
+				}
+			}
+			else if (inBounds < 2) {
+				AllCommands.raiseError("Missing opperand: Please enter a " +
+						"directory to push.");
+			}
+			else {
+				AllCommands.raiseError("Too many arguments: Pushd only " +
+						"takes in one argument");
+			}
+		}
+		
+		else if (commandParts.get(0).equals("popd")) {
+			if (commandParts.size() >= 3) {
+				if ((redirectInput(commandParts.get(
+						commandParts.size()-2), Arrays.asList(3), inBounds))) {
+					//can have: popd >> file
+					redirect = true;
+				}
+			}
+			if (inBounds == 1 || redirect) {
+				StackCommands.Popd();
+			}
+			else {
+				AllCommands.raiseError("Too many arguments: popd takes in no" +
+						" arguments");
+			}
+		}
+
+		else if (commandParts.get(0).equals("cd")) {
+			if (commandParts.size() >= 3) {
+				if ((redirectInput(commandParts.get(
+						commandParts.size()-2), Arrays.asList(4), inBounds))) {
+					//can have: cd path >> file
+					redirect = true;
+				}
+			}
+			if (inBounds == 2 || redirect) {
+				FileSystem[] dirPair = parsePath(commandParts.get(1));
+				if (checkPath(commandParts.get(1), false)) {
+					AllCommands.changeWorkingDirectory((Directory) dirPair[0]);
+					AllCommands.changeWorkingDirectory((Directory) dirPair[1]);
+				}
+			} else if (inBounds == 1) {
+				AllCommands.raiseError("Missing opperand: "
+						+ "Please enter a directory to change to");
+			} else {
+				AllCommands.raiseError("Too many arguments: cd can only"
+						+ "change from one FileSystem to another");
+			}
+		} 
+		
+		else if (commandParts.get(0).equals("mkdir")) {
+			if (checkInput(commandName)) {
+				return null;
+			}
+			//mkdir can have infinite commandParts
+			if (commandParts.size() >= 3) {
+				if ((redirectInput(commandParts.get(
+						commandParts.size()-2), Arrays.asList(1), 1)) && inBounds >= 4) {
+					//can have: mkdir dir1, dir2, etc >> file
+					redirect = true;
+				}
+			}
+			if (inBounds >= 2 || redirect) {
+				for (String dirPath : commandParts.subList(1,
+						(commandParts.size()))) {
+					if (checkPath(dirPath, true)) {
+						Directory currentParent = (Directory) 
+								parsePath(dirPath)[0];
+						String currentName = splitLastPath(dirPath);
+					
+						if (!currentParent.fileSystemInDirectory(currentName))
+						{
+							new Directory(splitLastPath(dirPath),
+									(Directory) parsePath(dirPath)[0]);
+						} 
+						else {
+							AllCommands.raiseError("A directory with the same "
+									+ "name already exists in this parent");
+						}
+					}
+				}
+			} else {
+				AllCommands.raiseError("Missing operand: Please specify "
+						+ "a directory to be created");
+			}
+		}
+
+		else if (commandParts.get(0).equals("echo")) {
+			String printingString = "";
+			if ((!commandParts.contains(">")) && 
+					(!commandParts.contains(">>"))) {
+				for (String part : commandParts.subList(1, 
+						commandParts.size())) {
+					if (printingString.equals("")) { 
+						printingString = printingString + part;
+					}
+					else {
+						printingString = printingString + " " + part;
+					}
+				}
+				AllCommands.echo(printingString);
+			}
+			else if ((commandParts.contains(">")) || 
+					(commandParts.contains(">>"))) {
+				for (String part : commandParts.subList(1, 
+						commandParts.size()-2)) {
+					if (printingString.equals("")) { 
+						printingString = printingString + part;
+					}
+					else {
+						printingString = printingString + " " + part;
+					}
+				}
+				if (commandParts.get(commandParts.size()-2).equals(">")) {
+					if (checkInput(commandParts.get(commandParts.size()-1))) {
+						return null;
+					}
+					AllCommands.echoFile(printingString, 
+							commandParts.get(commandParts.size()-1), true);
+				} else if (
+						commandParts.get(commandParts.size()-2).equals(">>")) {
+					if (checkInput(commandParts.get(commandParts.size()-1))) {
+						return null;
+					}
+					AllCommands.echoFile(printingString, 
+							commandParts.get(commandParts.size()-1), false);
+				}
+			} 
+			else if (inBounds == 1) {
+				AllCommands.raiseError("Missing opperand: Please specify "
+						+ "a string");
+			} 
+			else {
+				AllCommands.raiseError("Too many arguments: echo can only "
+						+ "take in 2 arguments");
+			}
+		} else if (commandParts.get(0).equals("mv")) {
+			if (commandParts.size() >= 3) {
+				if ((redirectInput(commandParts.get(
+						commandParts.size()-2), Arrays.asList(5), inBounds))) {
+					//can have: mv dir1 dir2 >> file
+					//trim it to get rid of the >> file part if true
+					commandParts = commandParts.subList(0, 3);
+				}
+			}
+			if (inBounds == 3) {
+				// Check if the first path exists, if not raise an error
+				if (checkPath(commandParts.get(1), false)) {
+					// Check if the second path exists, if so run mv with a
+					// blank string passed in
+					if (checkPath(commandParts.get(2), false)) {
+						FileMovement.mv((parsePath(commandParts.get(1))[1]),
+								(parsePath(commandParts.get(2))[1]), "");
+					}
+					// Check if the second path's parent exists (even if final
+					// doesn't exist). If so, run mv with the string to rename
+					// the new file or directory to
+					else if (checkPath(commandParts.get(2), true)) {
+						List<String> pathParts = Arrays.asList(commandParts
+								.get(2).trim().split("/"));
+						FileMovement.mv((parsePath(commandParts.get(1))[1]),
+								(parsePath(commandParts.get(2))[0]),
+								pathParts.get(pathParts.size() - 1));
+					}
+				}
+			} else if (inBounds > 3) {
+				AllCommands.raiseError("Too many arguments: mv can only take"
+						+ " in 2 arguments");
+			} else {
+				AllCommands.raiseError("Missing opperand: mv requires 2"
+						+ " arguments");
+			}
+		}
+
+		else if (commandParts.get(0).equals("cp")) {
+			if (commandParts.size() >= 3) {
+				if ((redirectInput(commandParts.get(
+						commandParts.size()-2), Arrays.asList(5), inBounds))) {
+					//can have: cp dir1 dir2 >> file
+					//trim it to get rid of the >> file part if true
+					commandParts = commandParts.subList(0, 3);
+				}
+			}
+			if (inBounds == 3) {
+				if (checkPath(commandParts.get(1), false)) {
+					if (checkPath(commandParts.get(2), false)) {
+						FileMovement.cp((parsePath(commandParts.get(1))[1]),
+								(parsePath(commandParts.get(2))[1]), "");
+					} else if (checkPath(commandParts.get(2), true)) {
+						List<String> pathParts = Arrays.asList(commandParts
+								.get(2).trim().split("/"));
+						FileMovement.cp((parsePath(commandParts.get(1))[1]),
+								(parsePath(commandParts.get(2))[0]),
+								pathParts.get(pathParts.size() - 1));
+					}
+				}
+			} else if (inBounds > 3) {
+				AllCommands.raiseError("Too many arguments: cp can only take"
+						+ " in 2 arguments");
+			} else {
+				AllCommands.raiseError("Missing opperand: cp requires 2"
+						+ " arguments");
+			}
+		} 
+		
+		else if (commandParts.get(0).equals("get")) {
+			if (commandParts.size() >= 3) {
+				if ((redirectInput(commandParts.get(
+						commandParts.size()-2), Arrays.asList(4), inBounds))) {
+					//can have: get URL >> file
+					//trim it to get rid of the >> file part if true
+					commandParts = commandParts.subList(0, 2);
+				}
+			}
+			if (inBounds == 2) {
+				try {
+					File.createFileFromURL(
+							commandParts.get(1)).URLReader(commandParts.get(1));
+				} catch (IOException e) {
+					System.out.println("URL Invalid");
+				}
+			}
+			else {
+				AllCommands.raiseError("Incorrect number of arguments");
+			}
+			
+		}
+		
+				
+			
+		
+		else {
+			AllCommands.raiseError("Invalid command entered.");
+		}
+		
+
+		return null;
+}
+
+	/**
+	 * Splits off the last element of the path in case it is needed for naming.
+	 * 
+	 * 
+	 * @param path
+	 *            the input path, as entered typically by the user through
+	 *            JShell
+	 * @return the last portion of the path
+	 */
+	public static String splitLastPath(String path) {
+		String newPath = path.substring(path.lastIndexOf("/") + 1);
+		return newPath;
+	}
+
+	/**
+	 * Returns a pair of fileSystem objects such that the second element will be
+	 * the deepest object specified if it exists and the first element will be
+	 * its parent directory. It will also being specifying these objects from
+	 * either the working directory or the root directory as appropriate.
+	 * 
+	 * @param path
+	 *            The input path, as entered typically by the user through
+	 *            JShell
+	 * @return {second deepest fileSystem object, deepest fileSystem object} 
+	 * 			(as specified by the path)
+	 */
+	public static FileSystem[] parsePath(String path) {
+		List<String> pathParts;
+		List<FileSystem> fileSystemArray = new ArrayList<FileSystem>();
+		/*
+		 * Splitting the string into parts and converting it to a listParsing
+		 * begins hereCheck where the command begins at (root, 
+		 * workingDirectory or parent of workingDirectory).Check if the 
+		 * first part of the path is a "/",denoting the root directory.
+		 */
+		if (path.indexOf(47) == 0) {
+			fileSystemArray.add(Directory.root);
+			path = path.substring(1);
+		}
+		// Otherwise, we must begin from the working directory.
+		else {
+			fileSystemArray.add(Directory.workingDirectory);
+		}
+		// pathParts is declared here in case the path is from the root
+		pathParts = Arrays.asList(path.trim().split("/"));
+		for (int i = 0; i < pathParts.size(); i++) {
+			Directory prevDir;
+			// "." denotes to enter the current directory again
+			if (pathParts.get(i).equals(".")) {
+				fileSystemArray.add(fileSystemArray.get(i));
+			}
+			// ".." denotes to enter the parent of the current directory
+			else if (pathParts.get(i).equals("..")) {
+				fileSystemArray.add(fileSystemArray.get(i).getParent());
+			}
+			// Otherwise, find the fileSystem object with the name given
+			else {
+				prevDir = (Directory) fileSystemArray.get(i);
+				fileSystemArray.add(prevDir.fileSystemNameToObject(pathParts
+						.get(i)));
+			}
+		}
+		// Return the final location of the path. If a new directory is entered
+		// (for mkdir), will return the parent to put the directory in as
+		// the 0th object, and null for the 1st object in returnPair
+		FileSystem[] returnPair = {
+				fileSystemArray.get(fileSystemArray.size() - 2),
+				fileSystemArray.get(fileSystemArray.size() - 1) };
+		return returnPair;
+	}
+
+	/**
+	 * Checking to see if the path contains all the directories it says it
+	 * contains
+	 * 
+	 * @param path
+	 *            The input path, as entered typically by the user through
+	 *            JShell
+	 * @return whether or not the path contains all the directories in it
+	 */
+	public static boolean checkPath(String path, boolean mkdir) {
+		List<String> pathParts;
+		List<FileSystem> fileSystemArray = new ArrayList<FileSystem>();
+		if (path.indexOf(47) == 0) {
+			fileSystemArray.add(Directory.root);
+			path = path.substring(1);
+		} else {
+			fileSystemArray.add(Directory.workingDirectory);
+		}
+		pathParts = Arrays.asList(path.trim().split("/"));
+		for (int i = 0; i < pathParts.size(); i++) {
+			Directory prevDir;
+			if (mkdir && i == pathParts.size()) {
+				break;
+			}
+			if (pathParts.get(i).equals(".")) {
+				fileSystemArray.add(fileSystemArray.get(i));
+			} else if (pathParts.get(i).equals("..")) {
+				fileSystemArray.add(fileSystemArray.get(i).getParent());
+			} else {
+				prevDir = (Directory) fileSystemArray.get(i);
+				if (!prevDir.fileSystemInDirectory(pathParts.get(i))) {
+					if (i != (pathParts.size() - 1) && !mkdir) {
+						AllCommands.raiseError("Invalid Directory.");
+						return false;
+					} else if (i == (pathParts.size() - 1) && mkdir) {
+					} else if (pathParts.get(i).isEmpty()) {
+					} else if (!commandParts.get(0).equals("mv")
+							&& !commandParts.get(0).equals("cp")) {
+						AllCommands.raiseError("Invalid Directory.");
+						return false;
+					} else
+						return false;
+				}
+				fileSystemArray.add(prevDir.fileSystemNameToObject(pathParts
+						.get(i)));
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Retrieves the inBounds value currently stored.
+	 * 
+	 * @return current inBounds value
+	 */
+	public static int getInBounds() {
+		return inBounds;
+	}
+
+	/**
+	 * Retrieves current list of command parts segmented by Input.
+	 * 
+	 * @return List<String> of commandParts
+	 */
+	public static List<String> getCommandParts() {
+		return commandParts;
+	}
+
+	/**
+	 * Checks the input command to see if it contains any special characters
+	 * 
+	 * @param inputCommand
+	 *            string of input to check
+	 * @return true if it contains no special characters, false otherwise
+	 */
+	private static boolean checkInput(String inputCommand) {
+		commandParts = Arrays.asList(inputCommand.trim().split("\\s+"));
+		String badChars = "";
+		for (int i = 0; i < inputCommand.length(); i++) {
+			char c = inputCommand.charAt(i);
+			for (int j = 0; j < illegalChars.length(); j++) {
+				char d = illegalChars.charAt(j);
+				if (c == d) {
+					badChars = badChars + c;
+				}
+			}
+			if (!badChars.equals("")) {
+				AllCommands.raiseError("Special characters " + badChars
+						+ " are not allowed.");
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * PLEASE FILL THIS IN *******************************************
+	 * 
+	 * 
+	 * @param commandPart
+	 * @param numValidCommands
+	 * @param inBounds
+	 * @return
+	 */
+	private static boolean redirectInput (String commandPart, 
+			List<Integer> numValidCommands, int inBounds) {
+		if (commandPart == ">" || commandPart == ">>") {
+			if (numValidCommands.contains(inBounds)) {
+				return true;
+			}
+			else return false;
+		}
+		else return false;
+	}
+	
+	
+	
+}

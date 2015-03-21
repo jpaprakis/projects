@@ -1,0 +1,9 @@
+a) What did I work on last time? 
+	-Completed the add file search method (and tested, seems to be working) 	
+
+b) What do I plan to work on now?  
+	-Sprint 2 - it will begin on Saturday, and we will allocate responsibilities then	
+	
+c) Am I blocked on anything?  
+	-I will be out of the province today until Sunday so I will not be able to contribute during that time.		
+	-We are having problems with our code, because it runs on some of our computers but is giving us errors on the cdf machines. My group members will look into this at the help session today.

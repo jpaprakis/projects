@@ -1,0 +1,10 @@
+a) What did I work on last time? 
+	-made the get method
+	-implemented redirection of output to files for every command that has output, otherwise do nothing if someone tries to redirect to a file on a method with no output
+	
+b) What do I plan to work on now?  
+	-finish the remove method
+	-testing
+
+c) Am I blocked on anything?  
+	-not much time left to complete the assignment!

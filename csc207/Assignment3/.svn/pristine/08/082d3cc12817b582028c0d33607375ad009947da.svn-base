@@ -1,0 +1,110 @@
+package driver;
+// **********************************************************
+// Assignment3:
+// CDF user_name: c4paprak
+//
+// Author: Julianna Paprakis
+//
+//
+// Honor Code: I pledge that this program represents my own
+// program code and that I have coded on my own. I received
+// help from no one in designing and debugging my program.
+// *********************************************************
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.URL;
+
+public class MyParser {
+
+  /**
+   * Main method
+   * 
+   * @param args
+   */
+  public static void main(String[] args) {
+    splitAndRun(args);
+  }
+
+
+	/**
+	 *  Runs most of the code - splits the args0 by commas, iterates through 
+	 *  each author URL and calls the constructor on each Author (which scrapes
+	 *  and stores the appropriate data in each Author's instance variables),
+	 *  then cleans up the full co-author list and adds it to the output.
+	 *  If a file is entered, will write the output to the file - otherwise it
+	 *  will write the output to console.
+	 * 
+	 * @param args
+	 *            the arguments entered before running the program, consisting
+	 *            of the Author URLs as args[0] and the optional outfile as
+	 *            args[1]
+	 */
+  private static void splitAndRun(String[] args) {
+    try {
+      System.out.println("DEBUG: URLS are " + args[0]);
+      String URLS[] = args[0].split(",");
+      for (String url : URLS) {
+      	new Author(url);
+      }
+      Author.removeDuplicatesAndSort();
+      Output.addCoAuthorContents();
+      try {
+          System.out.println("DEBUG: FileName is " + args[1]);
+          PrintWriter writer = new PrintWriter(args[1], "UTF-8");
+          writer.print(Output.getAllContents());
+          writer.close();
+        }
+        catch (Exception noFileException) {
+        	System.out.print(Output.getAllContents());
+        }
+    }    
+    catch (Exception noArgsException) {
+        System.out.println("Please enter arguments to continue");
+    }
+
+ }
+
+	/**
+	 *  Takes in the URL as given by the user in args[0] and either converts it
+	 *  to a file (as it is stored in the local files) or leaves it as an
+	 *  http url (if it is a live URL). Makes a connection and reads each line 
+	 *  of HTML code, then returns it 
+	 * 
+	 * @param urlString
+	 *            The given URL string for the author page - can either be 
+	 *            local or live (if live, starts with http)
+	 *            
+	 * @return
+	 * 			A string conversion of the StringBuilder html, which contains
+	 * 			all the html code from the given URL if a connection is made
+	 * 			to the URL.
+	 *            
+	 */
+  public String getHTML(String urlString) throws Exception {
+    // create object to store html source text as it is being collected
+    StringBuilder html = new StringBuilder();
+    // open connection to given url
+    URL url;
+    //Checks if it is an actual URL, if not assumes it's coming from a file
+    if (urlString.substring(0, 4).equals("http")) {
+    	url = new URL(urlString);
+    }
+    else{
+    	url = new File(urlString).toURI().toURL();
+    }
+    // create BufferedReader to buffer the given url's HTML source
+    BufferedReader htmlbr =
+        new BufferedReader(new InputStreamReader(url.openStream()));
+    String line;
+    // read each line of HTML code and store in StringBuilder
+    while ((line = htmlbr.readLine()) != null) {
+      html.append(line);
+    }
+    htmlbr.close();
+    // convert StringBuilder into a String and return it
+    return html.toString();
+  }
+
+}
