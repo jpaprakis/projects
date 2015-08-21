@@ -347,14 +347,15 @@ class CVisualizerRefactor:
     """This function handles adding a single print node 1+additional_space after our current index"""
     def add_one_printf(self, node_object, location_node):
         printf_object = PrintNode(node_object)
+        print_node = printf_object.return_printf_node()
 
         #If the declaration happened outside a function, must be global
         if location_node.func_name == None:
-            self.global_print_nodes.append(printf_object.print_node)
+            self.global_print_nodes.append(print_node)
 
         else:
             place_to_add = location_node.added_before + location_node.initial_index + location_node.additional_space + 1
-            location_node.parent.insert(place_to_add, printf_object.print_node)
+            location_node.parent.insert(place_to_add, print_node)
             location_node.added_after += 1
 
     """The initial function that's called: calls all the necessary functions above"""
