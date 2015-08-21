@@ -256,7 +256,7 @@ class CVisualizerRefactor:
         self.base_node_check(parent[index], current_location)
 
         #Change our to_add_index to ensure it's equal to the amount of nodes we added in front
-        #of our node, so that it can properly continue to loop through nodes in the function above
+        #of our node, so that it can properly continue to loop through in the function above
         to_add_index = current_location.added_before
 
     """Base check of the node: calls different functions based on the instance of the node"""

@@ -25,31 +25,23 @@ class RegularTypeDeclaration(object):
         return (isinstance(self.node.init, c_ast.FuncCall) and ((self.outer.get_funccall_funcname(self.node) in outer.func_list)))
 
     def create_printf_node(self):
-        add_id = c_ast.ID('printf')
         add_id_addr = None
         add_id_val = None
         add_id_size = None
-        add_return_val = None
-        add_id_ptr_size = None
         add_id_hex = None
         line_to_add = self.location_info.line_no
         
         line_no = "line:"+ (str)(line_to_add)
         function = (str)(self.outer.item_delimiter) +"function:"+ (str)(self.location_info.func_name)
 
-
-        var_info = ""
         var_name = (str)(self.outer.item_delimiter) +"var_name:"+ (str)(self.var_name_val)
         add_id_addr = c_ast.ID('&(' + self.var_name_val+')')
 
         var_addr = (str)(self.outer.item_delimiter) +"addr:%p"
         var_type = (str)(self.outer.item_delimiter) +"type:"+ (str)(self.type_of_var)
-        var_new = (str)(self.outer.item_delimiter) +"new:"+ (str)(self.var_new_val)
+        var_new = (str)(self.outer.item_delimiter) +"new:True"
 
-        #If on the stack, size is just the sizeof the variable name and location is stack
-        location_info = "stack"
-
-        var_location = (str)(self.outer.item_delimiter) +"location:"+location_info
+        var_location = (str)(self.outer.item_delimiter) +"location:stack"
 
         var_uninitialized = (str)(self.outer.item_delimiter) +"uninitialized:" + (str)(self.is_uninit)
 
@@ -59,37 +51,16 @@ class RegularTypeDeclaration(object):
 
         var_val = (str)(self.outer.item_delimiter) +"value:" + value_type_set
 
-        var_free = ""
-        is_global = ""
-        var_isarray = ""
-        var_is_ptr = ""
-        var_ptr_size = ""
-        returning_func = ""
-
-        var_info = var_name + var_addr +var_type + var_new + var_hex + var_isarray +is_global +var_location +var_uninitialized + var_free+var_size + var_is_ptr + var_ptr_size + var_val
+        var_info = var_name + var_addr +var_type + var_new + var_hex   +var_location +var_uninitialized +var_size   + var_val
 
         add_id_val = c_ast.ID(self.var_name_val)
         add_id_hex = c_ast.ID(self.var_name_val)
         
         add_id_size = c_ast.ID('(unsigned long)(sizeof(' + self.var_name_val+'))')
- 
-        var_dict_add = {(str)(self.var_name_val):(str)(self.type_of_var)}
-        self.outer.var_type_dict.update(var_dict_add)
-
-        #Finished changed variable block
-        str_to_add = (str)(self.outer.print_wrapper) + line_no + function + var_info 
-        add_const = c_ast.Constant('string', '"'+str_to_add+'"')
-
-        all_items_array = [add_const, add_id_addr, add_id_hex, add_id_size, add_id_ptr_size, add_id_val, add_return_val]
-        exprlist_array = []
-        for item in all_items_array:
-            if item != None:
-                exprlist_array.append(item)
-        add_exprList = c_ast.ExprList(exprlist_array)
-
-        new_node = c_ast.FuncCall(add_id, add_exprList)
         
-        return new_node
+        str_to_add = (str)(self.outer.print_wrapper) + line_no + function + var_info 
+ 
+        return {'all_items_array':[add_id_addr, add_id_hex, add_id_size, add_id_val], 'str_to_add':str_to_add}
 
 
 class StructTypeDeclaration(object):
@@ -107,10 +78,26 @@ class InsideFuncCall(object):
 
 #TODO: change this later as it is a subclass of many different types of parent nodes
 class PrintNode(object):
-    """ Handling nodes that are being assigned to return values of functions inside our program
+    """ Creating the PrintNode after calling the specific node object's create_printf_node function
     """
     def __init__(self, node):
-        self.print_node = node.create_printf_node()
+        printf_array = node.create_printf_node()
+
+        add_const = c_ast.Constant('string', '"'+printf_array['str_to_add']+'"')
+        
+        all_items_array = printf_array['all_items_array']
+        all_items_array.insert(0, add_const)
+
+        #Create an expression list node, this is all the stuff inside the printf brackets
+        add_exprList = c_ast.ExprList(all_items_array)
+        
+        #Create the rest of the node
+        add_id = c_ast.ID('printf')
+        new_node = c_ast.FuncCall(add_id, add_exprList)
+        
+        return new_node
+
+
 
 class LocationInfo(object):
     """ Info on how many nodes we have added before and after the current node we are examining.
