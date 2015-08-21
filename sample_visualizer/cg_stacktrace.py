@@ -136,6 +136,8 @@ class CVisualizerRefactor:
                     tname = ast.ext[i].decl.type.type.type.type.names[0] + " *"
                 else:
                     tname = ast.ext[i].decl.type.type.type.names[0]
+
+                #Add the function name and type to the var dict: ie, {main: int}
                 var_dict_add = {(str)(ast.ext[i].decl.name):tname}
                 self.func_list.update(var_dict_add)
             i+=1
@@ -149,7 +151,9 @@ class CVisualizerRefactor:
             if isinstance(ast.ext[i], c_ast.FuncDef):
                 func_name = ast.ext[i].decl.name
 
-                #Add the list of global print nodes to the beginning of the main function before we continue
+                #Add the list of global print nodes to the beginning of the main function before we continue:
+                #This list must be fully populated by the time we get to main, otherwise globals declared under
+                #main won't be able to be used in main anyway
                 if func_name == "main":
                     for node_num in range(0, len(self.global_print_nodes)):
                         (ast.ext)[i].body.block_items.insert(node_num, self.global_print_nodes[node_num])
@@ -158,36 +162,57 @@ class CVisualizerRefactor:
             i+= 1
 
 
-    """Recurses through the AST by compound, which is the body of any node that has more nodes inside it"""
+    """Recurses through the AST by compound, which is the body of any node that has more nodes inside it.
+
+        Originally we pass in the entire base compound of the AST as parent, the index of a particular function,
+        and the function name of that function(if it's in a function, globals wouldn't be)  
+    """
     def recurse_by_compound(self, parent, index, func_name):
 
+        #This is a hugely important variable: it gets incremented any time any nodes are added
+        #in front of the node we're currently looking at - if this is inaccurate, we'll either
+        #infinite loop, or skip nodes!
         global to_add_index
 
-        #If node is a node we added, ignore it & return 
+        #If node is a node that we added to the AST, ignore it & return 
         try:
             if parent[index].coord == None:
                 return
         except:
             return
 
-        ast_function = parent[index]
-
+        #Otherwise it's a node that was in the original C code: call handle_nodetypes on it 
+        #to see if we should add print statements based on what it is!        
         self.handle_nodetypes(parent, index, func_name)
+
+        #Now we're going to see if this node has its own compound list: ie, it's the top level
+        #but has nodes inside it that we need to reach. There's different ways to reach these 
+        #inside nodes depending on what our current outer node is - try them all as below
+        ast_function = parent[index]
+        
         try:
             compound_list = ast_function.body.block_items
         except AttributeError:
             try:
                 compound_list = ast_function.stmt.block_items
+
+            #Weird cases for "ifs": iftrue will always have to exist, but
+            #if fase only happens if there's an else. If "if false" exists,
+            #it either means there's a single else, or there's additional else if
+            #statements nested inside it
             except AttributeError:
                 try:
                     if_compound_list = [ast_function.iftrue.block_items]
                     compound_list = []
                     #Append any "if false" part of the if statement if exists
                     try:
+                        #When there's only 1 else, its block items are the list of nodes inside it
                         if_compound_list.append(ast_function.iffalse.block_items)
                     #Case where there's another "if" inside this one
                     except AttributeError:
                         try:
+                            #In this case, the iffalse contains a full other if node: we'll handle this
+                            #on the next recursion
                             if_compound_list.append([ast_function.iffalse])
                         except:
                             pass
@@ -197,69 +222,31 @@ class CVisualizerRefactor:
         #Case for if statements: need to do both left and right side of "if"
         if len(compound_list) == 0 and len(if_compound_list) > 0:
             for each_compound in if_compound_list:
+
+                #Set the actual compound_list in here, and handle it like we would the normal one
                 compound_list = each_compound
                 cur_par_index = 0
                 while cur_par_index < len(compound_list):
                     self.recurse_by_compound(compound_list, cur_par_index, func_name)
                     cur_par_index += 1+to_add_index
                     to_add_index = 0
+
             if_compound_list = []
 
         #Case for non if statements
         else:
+            #Loop through every node in the compound list, and try recursing through it until it
+            #doesn't have its own compound_list
             cur_par_index = 0
             while cur_par_index < len(compound_list):
                 self.recurse_by_compound(compound_list, cur_par_index, func_name)
+
+                #This adds the amount of nodes we inserted in front of the cur_par_index when we
+                #called handle_nodetyes: to make sure we're at the corrent index
                 cur_par_index += 1+to_add_index
+                
+                #Reset the # of nodes in front of our cur_par_index to 0
                 to_add_index = 0
-
-
-
-    """The initial function that's called: calls all the necessary functions above"""
-    def add_printf(self, user_script):
-
-        stripped_user_script = self.remove_preprocessor_directives(user_script)
-        #print("STRIPPED USER SCRIPT IS -------")
-        #print(stripped_user_script)
-
-        #Need to save user_script in a temp file so that we can run it
-        temp_c_file = self.temp_path + self.user + self.date_time + ".c"
-        print("TEMP PATH IS -------"+(str)(self.temp_path))
-        try:
-            # Creating the C file, and create the temp directory if it doesn't exist
-            try:
-                f = open(temp_c_file, 'w')
-            except OSError:
-                # Create temp directory if it doesn't exist
-                os.makedirs(os.path.dirname(self.temp_path))
-                f = open(temp_c_file, 'w')
-
-            f.write(stripped_user_script)
-            f.close()
-
-        except Exception as e:
-            print("ERROR with user file pre-processing: {0}".format(e))
-            return
-
-        ast = parse_file(temp_c_file, use_cpp=True,
-        cpp_path='gcc',
-        cpp_args=['-nostdinc','-E', r'-Iutils/fake_libc_include'])
-
-        try:
-            os.remove(temp_c_file)
-        except OSError:
-            pass
-
-        #Finding all functions in the program so we can save them in a list
-        self.find_all_function_decl(ast)
-
-        #Going through each function and adding all the print statements
-        self.recurse_by_function(ast)
-
-        #Turning the new ast back into C code
-        generator = c_generator.CGenerator()
-
-        return generator.visit(ast)
 
 
     """Takes a node, checks its type, and calls the appropriate function on it to add a print statement"""
@@ -268,6 +255,8 @@ class CVisualizerRefactor:
 
         self.base_node_check(parent[index], current_location)
 
+        #Change our to_add_index to ensure it's equal to the amount of nodes we added in front
+        #of our node, so that it can properly continue to loop through nodes in the function above
         to_add_index = current_location.added_before
 
     """Base check of the node: calls different functions based on the instance of the node"""
@@ -368,3 +357,48 @@ class CVisualizerRefactor:
             location_node.parent.insert(place_to_add, printf_object.print_node)
             location_node.added_after += 1
 
+    """The initial function that's called: calls all the necessary functions above"""
+    def add_printf(self, user_script):
+
+        #Remove preprocessor directives like #include because AST won't parse them
+        stripped_user_script = self.remove_preprocessor_directives(user_script)
+
+        #Need to save user_script in a temp file so that we can run it
+        temp_c_file = self.temp_path + self.user + self.date_time + ".c"
+        try:
+            # Creating the C file to save our stripped user script in
+            try:
+                f = open(temp_c_file, 'w')
+            except OSError:
+                # Create temp directory if it doesn't exist
+                os.makedirs(os.path.dirname(self.temp_path))
+                f = open(temp_c_file, 'w')
+
+            f.write(stripped_user_script)
+            f.close()
+
+        except Exception as e:
+            print("ERROR with user file pre-processing: {0}".format(e))
+            return
+
+        #Using Pycparser library functions to parse our code, saving in ast
+        ast = parse_file(temp_c_file, use_cpp=True,
+        cpp_path='gcc',
+        cpp_args=['-nostdinc','-E', r'-Iutils/fake_libc_include'])
+
+        #Remove temp C file, we no longer need it
+        try:
+            os.remove(temp_c_file)
+        except OSError:
+            pass
+
+        #Finding all functions in the program so we can save them in a list
+        self.find_all_function_decl(ast)
+
+        #Going through each function and adding all the print statements
+        self.recurse_by_function(ast)
+
+        #Turning the new ast back into C code
+        generator = c_generator.CGenerator()
+
+        return generator.visit(ast)
