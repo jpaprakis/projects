@@ -65,13 +65,6 @@ class CVisualizerRefactor:
         #item_delimiter will hold the pattern we'll use to identify where different items in a single print statement begin and end
         self.item_delimiter = uuid.uuid4().hex
 
-        #malloc_size_var_name is the name of the variable we'll be using to keep track of the size of any mallocs in the c code
-        #We will just declare it as global to start
-        self.malloc_size_var_name = "malloc_size"+(str)(uuid.uuid4().hex)
-
-        #Delimiter to keep track of where array hex value begins
-        self.array_hex_delim = uuid.uuid4().hex
-
         """Dictionaries and lists required to keep track of specific things we've come across in the AST"""
         #func_list keeps track of all the function declaractions in our program and their type
         self.func_list = {}
@@ -79,24 +72,9 @@ class CVisualizerRefactor:
         #var_type_dict will hold a dictionary of all the variables we've seen, and their types - used for return val printing
         self.var_type_dict = {}
 
-        #ptr_dict will hold a dictionary of all the pointer names we've seen, and the amt of levels of pointers
-        #ie: int **ptr_name would be {ptr_name:2}
-        self.ptr_dict = {}
-
-        #amt_after keeps track of the amount of print nodes we just added after the current node, used for returns
-        self.amt_after = 0
-
         #global_print_nodes will contain a list of ast print nodes that we must insert at the beginning of the main function. We come
         #across these through global declarations, but can only insert them in main
         self.global_print_nodes = []
-
-        #array_dict will hold the name as the key, with type, size nodes of each level, temporary int vars to be used in for loops,and depth as values in a list
-        #{array_name:[type, [size node1, size node2], [temp for var 1, temp for var 2],depth, ptr_depth]}
-        #int x[3][4]; would show up as:  {x:[int, [node with constant 3, node with constant 4], [temp for var 1, temp for var 2],2, 0]}
-        self.array_dict = {}
-
-        #handled_returns is a list of return nodes that have already been handled - used to check if we've handled a return or not
-        self.handled_returns = []
 
         #Dictionary of all structs and the things within them: if a struct within a struct, both will show up as keys
         #Format is: {struct_name: [declaration1, declaration2, ...]}
@@ -260,6 +238,10 @@ class CVisualizerRefactor:
     def base_node_check(self, node, location_node):
         if isinstance(node, c_ast.Decl):
             self.declaration_check(node, location_node)
+        #Case for variable assignment, if variable already exists
+        elif isinstance(node, c_ast.Assignment):
+            self.assignment_check(node, location_node)
+
 
     """If we have a declaration node, check if it's a typedecl or a pointerdecl"""
     def declaration_check(self, node, location_node):
@@ -271,13 +253,27 @@ class CVisualizerRefactor:
         elif isinstance(declaration_type, c_ast.PtrDecl):
             self.pointer_declaration_check(node, location_node)
 
+    """If we have an assignment node, check if it's an assignment to a regular var, pointer, or array"""
+    def assignment_check(self, node, location_node):
+        assignment_type = node.lvalue
+
+        #Regular variables being assigned, like x = 5
+        if isinstance(assignment_type, c_ast.ID):
+            self.handle_id_assignment(node, location_node)
+        
+        #This is the case for pointers, like *x = 5
+        elif isinstance(assignment_type, c_ast.UnaryOp):
+            self.handle_ptr_assignment(node, location_node)
+
+        #This is the case for a part of an array, like x[2] = 5
+        elif isinstance(assignment_type, c_ast.ArrayRef):
+            self.handle_arr_assignment(node, location_node)
+
     """If we have a TypeDeclaration node, check if it's a struct or a regular type declaration, like int"""
     def type_declaration_check(self, node, location_node):
-        #This is the subtype of the type declaration node, such as "int" or "char" 
-        typedecl_type = self.get_typedecl_type(node)
 
-        #self.actual_type is the actual type of the declaration: ie, if its typedef'd 
-        actual_type = self.get_actual_type(typedecl_type)
+        #actual_type is the actual type of the declaration: ie, if its typedef'd 
+        actual_type = self.get_actual_typedecl_type(node)
         
         is_struct = self.check_struct(actual_type)
 
@@ -288,23 +284,21 @@ class CVisualizerRefactor:
             self.handle_regular_typedecl(node, location_node)
             
     """Begin Typedecl Helper Functions"""
-
-    #gets the typedecl type with a try/catch exception, which depends on what's inside our decl node    
-    def get_typedecl_type(self, node):
-        try:
-            #This will pass as long as node_to_consider.type.type is an IdentifierType node
-            return node.type.type.names[0] 
-        except:
-            #This will generally happen only when it is a struct that has already been declared, inside another struct
-            return node.type.type.name
     
     #Returns the actual type of the TypeDeclaration, if not typedef'd it stays the same
-    def get_actual_type(self, typedecl_type):
-        typedef_entry = self.typedef_dict.get(typedecl_type)
+    def get_actual_typedecl_type(self, node):
+        try:
+            #This will pass as long as node_to_consider.type.type is an IdentifierType node
+            defined_type = node.type.type.names[0] 
+        except:
+            #This will generally happen only when it is a struct that has already been declared, inside another struct
+            defined_type = node.type.type.name
+
+        typedef_entry = self.typedef_dict.get(defined_type)
         if typedef_entry != None:
             return typedef_entry
         else:
-            return typedecl_type
+            return defined_type
 
     #Check if its actual_type is inside the struct dictionary: if so, return True
     def check_struct(self, actual_type):
@@ -320,9 +314,19 @@ class CVisualizerRefactor:
 
     """End Typedecl Helper Functions"""
 
-    """Handle adding nodes for a struct typedeclaration node"""
-    def handle_struct_typedecl(self, node, location_node):
-        print("struct typedecl")
+
+    """Begin Assignment Helper Functions"""
+    #Returns the actual type of the TypeDeclaration, if not typedef'd it stays the same
+    def get_actual_assignment_type(self, assign_name):
+        type_of_var = self.var_type_dict.get(assign_name)
+        actual_type = self.typedef_dict.get(type_of_var)
+
+        if actual_type != None:
+            return actual_type
+        else:
+            return type_of_var
+    """End Assignment Helper Functions"""
+
 
     """Handle adding nodes for a regular type declaration node"""
     def handle_regular_typedecl(self, node, location_node):
@@ -337,13 +341,40 @@ class CVisualizerRefactor:
         else:
             self.add_one_printf(node_object, location_node)
 
+    """Handle adding nodes for an ID Assignment node"""
+    def handle_id_assignment(self, node, location_node):
+        #Create a new ID Assignment object
+        node_object = IDAssignment(node, self, location_node)
+
+        #If it's being assigned to an inside function, handle it slightly differently
+        if node_object.is_funcdecl:
+            self.handle_inside_funccall(node_object, location_node)
+
+        #Otherwise, just add a single printf node right after this node in the AST
+        else:
+            self.add_one_printf(node_object, location_node)
+
+    """Handle adding nodes for a ptr Assignment node"""
+    def handle_ptr_assignment(self, node, location_node):
+        print("ptr assignment")
+
+    """Handle adding nodes for an array Assignment node"""
+    def handle_arr_assignment(self, node, location_node):
+        print("arr assignment")
+
+    """Handle adding nodes for a struct typedeclaration node"""
+    def handle_struct_typedecl(self, node, location_node):
+        print("struct typedecl")
+
+
+
     """If we called a function that we defined in our program, handle adding print nodes for it here"""
     def handle_inside_funccall(self, node_object, location_node):
         print("handling inside funccall")
 
     """This function handles adding a single print node 1+additional_space after our current index"""
     def add_one_printf(self, node_object, location_node):
-        printf_object = PrintNode(node_object)
+        printf_object = PrintNode(node_object, self)
         print_node = printf_object.return_printf_node()
 
         #If the declaration happened outside a function, must be global
@@ -403,4 +434,4 @@ class CVisualizerRefactor:
 
 if __name__ == "__main__":
     run_me = CVisualizerRefactor('Juli', 'projects')
-    run_me.add_printf("#include <stdio.h> \nint main(){ \nint x = 5; \nint y = 100;\n y = 5000; \nreturn 0;}")
+    run_me.add_printf("#include <stdio.h> \nint main(){ \nint x = 5; \nint y = 100;\n y = 5000; \n *x=100;\nreturn 0;}")
