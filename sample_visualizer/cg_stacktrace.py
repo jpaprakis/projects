@@ -1,5 +1,4 @@
-from languages.c.visualizer.cg_stacktrace_functions import *
-import problems_c.models
+from cg_stacktrace_objects import *
 import logging
 import pdb
 import uuid
@@ -8,8 +7,6 @@ import os
 import datetime
 sys.path.extend(['.', '..'])
 from pycparser import parse_file, c_ast, c_generator, plyparser
-from languages.c.visualizer.cg_stacktrace_objects import *
-
 
 #to_add_index will contain any extra amount we need to add to the index from node insertions in front of the current node, added by
 #other functions
@@ -402,4 +399,8 @@ class CVisualizerRefactor:
         #Turning the new ast back into C code
         generator = c_generator.CGenerator()
 
-        return generator.visit(ast)
+        print (generator.visit(ast))
+
+if __name__ == "__main__":
+    run_me = CVisualizerRefactor('Juli', 'projects')
+    run_me.add_printf("#include <stdio.h> \nint main(){ \nint x = 5; \nint y = 100;\n y = 5000; \nreturn 0;}")
