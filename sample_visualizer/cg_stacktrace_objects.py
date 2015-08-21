@@ -63,29 +63,17 @@ class RegularTypeDeclaration(object):
         return {'all_items_array':[add_id_addr, add_id_hex, add_id_size, add_id_val], 'str_to_add':str_to_add}
 
 
-class StructTypeDeclaration(object):
-    """ Handling a struct declaration node object
-    """
-    def __init__(self, parent):
-        TypeDeclaration.__init__(self, parent)
-
-#TODO: change this later as it is a subclass of many different types of parent nodes
-class InsideFuncCall(object):
-    """ Handling nodes that are being assigned to return values of functions inside our program
-    """
-    def __init__(self, parent):
-        RegularTypeDeclaration.__init__(self, parent)
-
-#TODO: change this later as it is a subclass of many different types of parent nodes
 class PrintNode(object):
     """ Creating the PrintNode after calling the specific node object's create_printf_node function
     """
     def __init__(self, node):
-        printf_array = node.create_printf_node()
-
-        add_const = c_ast.Constant('string', '"'+printf_array['str_to_add']+'"')
+        self.printf_array = node.create_printf_node()
+    
+    def return_printf_node(self):
+                
+        add_const = c_ast.Constant('string', '"'+self.printf_array['str_to_add']+'"')
         
-        all_items_array = printf_array['all_items_array']
+        all_items_array = self.printf_array['all_items_array']
         all_items_array.insert(0, add_const)
 
         #Create an expression list node, this is all the stuff inside the printf brackets
@@ -94,7 +82,7 @@ class PrintNode(object):
         #Create the rest of the node
         add_id = c_ast.ID('printf')
         new_node = c_ast.FuncCall(add_id, add_exprList)
-        
+
         return new_node
 
 
@@ -116,4 +104,3 @@ class LocationInfo(object):
         self.additional_space = 0  #self.extra_after
         self.func_name = func_name
         self.line_no = parent[initial_index].coord.line
-
